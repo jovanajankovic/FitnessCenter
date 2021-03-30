@@ -1,0 +1,289 @@
+<html>
+<head>
+    <title>Moj nalog</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' href='mojNalog.css'>
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+    <script>
+        function ucitaj() {
+            var korisnik = localStorage.getItem("korisnik");
+            korisnik = JSON.parse(korisnik);
+            var pozicija;
+
+            document.getElementById("ime").innerHTML = korisnik.ime;
+            document.getElementById("prezime").innerHTML = korisnik.prezime;
+
+            //VAZNO!!!
+           // var korisnici = localStorage.getItem("korisnici");
+            //korisnici = JSON.parse(korisnici);
+           
+            korisnici = [
+
+                {
+                    ime: "Pera",
+                    prezime: "Peric",
+                    trening: ["Reformer pilates", "Cardio training of high intensity"]
+                },
+
+                {
+                    ime: "Jovana",
+                    prezime: "Jankovic",
+                    trening: ["Cardio training of high intensity", "Cardio training of low intensity", 'Classic pilates', 'Stot pilates', 'Reformer pilates']
+                },
+
+                {
+                    ime: "Filip",
+                    prezime: "Lucic",
+                    //trening:["Cardio training of low intensity", "Cardio training of medium intensity","Classic pilates","Reformer pilates","Stot pilates", "Ashtanga Yoga", "Bikram Yoga", "Hatha Yoga", "Core - Hard", "Core - Easy", "Core - Medium", "Cardio training of high intensity"]
+                    trening: ["Cardio trening visokog intenziteta", "Cardio trening niskog intenziteta", "Cardio trening srednjeg intenziteta", "Stot pilates", "Ashtanga Yoga", "Bikram Yoga", "Hatha Yoga", "Core - Hard", "Core - Easy", "Core - Medium", "Cardio training of low intensity", "Cardio training of medium intensity", "Cardio training of high intensity", "Classic pilates", "Klasicni pilates", "Reformer pilates"]
+                },
+                {
+                    ime: "Grigor",
+                    prezime: "Milosevic",
+                    trening: ["Cardio training of low intensity", "Cardio training of medium intensity", 'Classic pilates']
+                }
+            ]
+
+            for (var i = 0; i < korisnici.length; i++) {
+                if (korisnici[i].ime == korisnik.ime && korisnici[i].prezime == korisnik.prezime) {
+                    pozicija = i;
+                    break;
+                }
+            }
+
+            var svi_treninzi = korisnici[pozicija].trening;
+            var opis = new Array();
+            //alert(korisnici[pozicija].trening[0]);
+            for (var i = 0; i < svi_treninzi.length; i++) {
+                opis = opis + svi_treninzi[i] + "<br>";
+            }
+
+            document.getElementById("treninzi").innerHTML = opis;
+            var zakazano = new Array();
+            if (korisnik.treninzi["core1t1"] == true) {
+              //  var core1t1 = "Core trening, pocetni nivo - Ponedeljak 12:00 ";
+                var core1t1="Core training, beginner's level - Monday 12:00";
+                zakazano += core1t1 + "<br>"
+            }
+
+
+            if (korisnik.treninzi["core2t1"] == true) {
+                //var core2t1 = "Core trening, srednji nivo - Tuesday 12:00 ";
+                var core2t1="Core training, medium level - Tuesday 12:00";
+                zakazano += core2t1 + "<br>"
+            }
+
+            if (korisnik.treninzi["core3t1"] == true) {
+                //var core3t1 = "Core trening, visi nivo - Tuesday 19:00";
+                var core3t1 = "Core training, high level - Tuesday 19:00";
+                zakazano += core3t1 + "<br>"
+            }
+
+            if (korisnik.treninzi["cardio1t1"] == true) {
+               // var cardio1t1 = "Cardio trening niskog intenziteta - Ponedeljak 09:00";
+                var cardio1t1="Cardio training of low intensity - Monday 09:00";
+                zakazano += cardio1t1 + "<br>";
+            }
+
+            if (korisnik.treninzi["cardio2t1"] == true) {
+               // var cardio2t1 = "Cardio trening srednjeg intenziteta - Cetvrtak 09:00";
+                var cardio2t1="Cardio training of medium intensity - Thursday 09:00";
+                zakazano += cardio2t1 + "<br>";
+            }
+
+            if (korisnik.treninzi["cardio3t1"] == true) {
+               // var cardio3t1 = "Cardio trening visokog intenziteta - Petak 09:00";
+                var cardio3t1="Cardio training of high intensity - Friday 09:00";
+                zakazano += cardio3t1 + "<br>";
+            }
+
+            if (korisnik.treninzi["klasicnit1"] == true) {
+                //var klasicnit1 = "Klasicni pilates - Subota 21:00";
+                var klasicnit1="Classic pilates - Subota 21:00";
+                zakazano += klasicnit1 + "<br>";
+            }
+
+            if (korisnik.treninzi["reformert1"] == true) {
+              //  var reformert1 = "Reformer pilates - Subota 18:00";
+                var reformert1="Reformer pilates - Saturday 18:00";
+                zakazano += reformert1 + "<br>";
+            }
+
+            if (korisnik.treninzi["stott1"] == true) {
+             //   var stott1 = "Stot pilates - Sreda 19:00";
+                var stott1="Stot pilates - Wednesday 19:00";
+                zakazano += stott1 + "<br>";
+            }
+
+            if (korisnik.treninzi["ashtangat1"] == true) {
+                var ashtangat1 = "Ashtanga Yoga - Friday 20:00";
+                zakazano += ashtangat1 + "<br>";
+            }
+
+            if (korisnik.treninzi["bikramt1"] == true) {
+                var bikramt1 = "Bikram Yoga - Thursday 20:00";
+                zakazano += bikramt1 + "<br>";
+            }
+
+            if (korisnik.treninzi["hathat1"] == true) {
+                var hathat1 = "Hatha Yoga - Wednesday 21:00";
+                zakazano += hathat1 + "<br>";
+            }
+
+            //  document.getElementById("zakazani_treninzi").innerHTML=core1t1+"<br>"+core3t1+"<br>"+cardio1t1+"<br>"+cardio2t1+"<br>"+cardio3t1+"<br>"+klasicnit1+"<br>"+reformert1+"<br>"+ stott1+"<br>"+ashtangat1+"<br>"+bikramt1+"<br>"+hathat1+"<br>";
+            document.getElementById("zakazani_treninzi").innerHTML = zakazano;
+
+        }
+    </script>
+</head>
+<body onload='ucitaj()'>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-2 text-left header'>
+                <img src='pob.jpg' height='90px' width='70%'>
+            </div>
+            <div class='col-sm-2 text-left header'>
+                <p class='logo'>Teretana Pobednik</p>
+            </div>
+            <div class='col-sm-8 header lista'>
+                <nav>
+                    <ul>
+                        <li><a href='indexENG.html'>Home</a></li>
+                        <li><a href='uslugeENG.html'>Services</a></li>
+                        <li><a href='ZakazivanjeENG.html'>Appointments</a></li>
+                        <li><a style="color: yellow;" href='mojNalogENG.html'>My Account</a></li>
+                        <li><a href="About.html">About us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12 navigacija'>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb purple lighten-4">
+                        <li class="breadcrumb-item"><a class="black-text" href="indexENG.html">Home</a></li>
+                        <li class="breadcrumb-item active">My Account</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class='row hello'>
+            <div class='col-sm-12 text-center  pozadina'>
+                <h1>My Account</h1>
+                <br>
+                <table align='center' class='table' height='300px' width='700px'>
+                    <tr>
+                        <td class='polja'>Name:</td>
+                        <td class='polja1' id='ime'></td>
+                    </tr>
+                    <tr>
+                        <td class='polja'>Surname:</td>
+                        <td class='polja1' id='prezime'></td>
+                    </tr>
+                    <tr>
+                        <td class='polja'>Visited training programs:</td>
+                        <td class='polja1' id='treninzi'></td>
+                    </tr>
+                    <tr>
+                        <td class='polja'>Booked training programs for this week:</td>
+                        <td class='polja1' id='zakazani_treninzi'></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-sm-12 meni'>
+                <h3 class='menuheader'>
+                    Read more
+                </h3>
+            </div>
+        </div>
+
+
+
+        <div class='row meni'>
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Services
+                </h4>
+                <p>
+                    <a href="treningENG.html" class='menielem'>Training </a>&nbsp;&nbsp;
+                    <i class="em em-muscle" aria-role="presentation" aria-label="FLEXED BICEPS"></i>
+                    <br />
+                    <a href="nutricionistaENG.html" class='menielem'>Nutricionist</a>
+                    &nbsp;&nbsp;
+                    <i class="em em-banana" aria-role="presentation" aria-label="BANANA"></i>
+                    <br />
+                    <a href="masazaENG.html" class='menielem'>Massages</a>&nbsp;&nbsp;
+                    <i class="em em-massage" aria-role="presentation" aria-label="FACE MASSAGE"></i>
+                </p>
+                <br />
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Staff
+                </h4>
+                <p>
+                    <a href="FilipENG.html" class='menielem'>Filip </a>
+                    <i class="em em-man-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="VanjaENG.html" class='menielem'>Vanja</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="VukasinENG.html" class='menielem'>Vukasin</a>
+                    <i class="em em-weight_lifter" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="ZvezdanaENG.html" class='menielem'>Zvezdana</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                </p>
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Schedule
+                </h4>
+                <p>
+                    <a href="Zakazivanje.html" class='menielem'>See our schedule</a>
+                    <i class="em em-calendar" aria-role="presentation" aria-label="TEAR-OFF CALENDAR"></i>
+                </p>
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    My account
+                </h4>
+                <p>
+                    <a href="mojNalogENG.html" class='menielem'>Account</a>
+                    <i class="em em-male-technologist" aria-role="presentation" aria-label=""></i>
+                    <br />
+                <h4 class='menuheader'>
+                    Languages/Jezici
+                </h4>
+                <div style="font-size: 10px;">
+                    <p>
+                        <a href="mojNalogENG.html"> <img src="jack.png" alt="" height="15" width="30"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="mojNalog.html"><img src="srbija.png" alt="" height="15" width="30"></a>
+                        <br />
+                        <a style="text-decoration: none; color: white;" href="mojNalogENG.html">English</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a style="text-decoration: none; color: white;" href="mojNalog.html">Serbian</a>
+                    </p>
+                </div>
+                </p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-sm-12 footer'>
+                „Copyright 2020, Јована Јанковић, Филип Лучић, Одсек за софтверско инжењерство Електротехничког
+                факултета
+                Универзитета у Београду"
+            </div>
+        </div>
+    </div>
+</body>
+</html>

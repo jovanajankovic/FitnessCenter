@@ -1,0 +1,623 @@
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' href='style.css'>
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+
+
+    <script>
+        function nutricionista() {
+            window.open("nutricionistaENG.html");
+        }
+        function masaza() {
+            window.open("masazaENG.html");
+        }
+
+        function trening() {
+            window.open("treningENG.html");
+        }
+
+        function saznaj() {
+            window.open('saznajENG.html');
+        }
+        function ucitaj() {
+            // alert("usao u fju ucitaj");
+
+            //ucitavanje korisnika
+            var flag = localStorage.getItem("flag");
+            if (flag == null) { //bice null samo na prvom pozivu
+                //alert("Ucitao korisnika");
+                var korisnik = {
+                    "ime": "Jovana",
+                    "prezime": "Jankovic",
+                    "treninzi": {
+                        "core1t1": false,
+                        "core2t1": false,
+                        "core3t1": false,
+                        "cardio1t1": false,
+                        "cardio2t1": false,
+                        "cardio3t1": false,
+                        "klasicnit1": false,
+                        "reformert1": false,
+                        "stott1": false,
+                        "ashtangat1": false,
+                        "bikramt1": false,
+                        "hathat1": false
+                    }
+                };
+                localStorage.setItem('korisnik', JSON.stringify(korisnik));
+                localStorage.setItem("flag", 1);
+            }
+
+            //mala baza korisnika
+            korisnici = [
+
+                {
+                    ime: "Pera",
+                    prezime: "Peric",
+                    trening: ["Reformer pilates", "Cardio training of high intensity"]
+                },
+
+                {
+                    ime: "Jovana",
+                    prezime: "Jankovic",
+                    trening: ["Cardio training of high intensity", "Cardio training of low intensity", 'Classic pilates', 'Stot pilates', 'Reformer pilates']
+                },
+
+                {
+                    ime: "Filip",
+                    prezime: "Lucic",
+                    //trening:["Cardio training of low intensity", "Cardio training of medium intensity","Classic pilates","Reformer pilates","Stot pilates", "Ashtanga Yoga", "Bikram Yoga", "Hatha Yoga", "Core - Hard", "Core - Easy", "Core - Medium", "Cardio training of high intensity"]
+                    trening: ["Cardio trening visokog intenziteta", "Cardio trening niskog intenziteta", "Cardio trening srednjeg intenziteta", "Stot pilates", "Ashtanga Yoga", "Bikram Yoga", "Hatha Yoga", "Core - Hard", "Core - Easy", "Core - Medium", "Cardio training of low intensity", "Cardio training of medium intensity", "Cardio training of high intensity", "Classic pilates", "Klasicni pilates", "Reformer pilates"]
+                },
+                {
+                    ime: "Grigor",
+                    prezime: "Milosevic",
+                    trening: ["Cardio training of low intensity", "Cardio training of medium intensity", 'Classic pilates']
+                }
+            ]
+
+            
+
+            localStorage.setItem("korisnici", JSON.stringify(korisnici));
+          //  alert("Sent to storage");
+
+
+            //dodajemo korisnika u storage
+            // localStorage.setItem('korisnik', JSON.stringify(korisnik));
+            //  localStorage.setItem("flag",1);
+
+            var ocena_klasicni_pilates = localStorage.getItem("ocena_klasicni_pilates");
+
+            if (ocena_klasicni_pilates == null) {
+                ocena_klasicni_pilates = 0;
+            } else {
+                ocena_klasicni_pilates = parseInt(ocena_klasicni_pilates);
+                //alert(ocena_klasicni_pilates);
+            }
+
+            var ocena_reformer_pilates = localStorage.getItem("ocena_reformer_pilates");
+
+            if (ocena_reformer_pilates == null) {
+                ocena_reformer_pilates = 0;
+                //  alert("Nema ocene za reformer");
+            } else {
+                ocena_reformer_pilates = parseInt(ocena_reformer_pilates);
+                //alert(ocena_reformer_pilates);
+            }
+
+
+            var ocena_stot_pilates = localStorage.getItem("ocena_stot_pilates");
+
+            if (ocena_stot_pilates == null) {
+                ocena_stot_pilates = 0;
+                //  alert("nema ocene za stot");
+            }
+            else {
+                ocena_stot_pilates = parseInt(ocena_stot_pilates);
+                //alert(ocena_stot_pilates);
+            }
+
+
+            var ocena_niski_cardio = localStorage.getItem("ocena_niski_cardio");
+
+            if (ocena_niski_cardio == null) {
+                ocena_niski_cardio = 0;
+                //alert("Nema ocene niski");
+            }
+            else {
+                ocena_niski_cardio = parseInt(ocena_niski_cardio);
+                //  alert(ocena_niski_cardio);
+            }
+
+            var ocena_srednji_cardio = localStorage.getItem("ocena_srednji_cardio");
+
+            if (ocena_srednji_cardio == null) {
+                ocena_srednji_cardio = 0;
+            }
+            else {
+                ocena_srednji_cardio = parseInt(ocena_srednji_cardio);
+            }
+
+            var ocena_visoki_cardio = localStorage.getItem("ocena_visok_cardio");
+
+            if (ocena_visoki_cardio == null) {
+                ocena_visoki_cardio = 0;
+            }
+            else {
+                ocena_visoki_cardio = parseInt(ocena_visoki_cardio);
+            }
+
+
+            var ocena_ashtanga_yoga = localStorage.getItem("ocena_ashtanga_yoga");
+
+            if (ocena_ashtanga_yoga == null) {
+                ashtanga_yoga = 0;
+            }
+            else {
+                ocena_ashtanga_yoga = parseInt(ocena_ashtanga_yoga);
+            }
+
+
+
+            var ocena_bikram_yoga = localStorage.getItem("ocena_bikram_yoga");
+
+            if (ocena_bikram_yoga == null) {
+                ocena_bikram_yoga = 0;
+            }
+            else {
+                ocena_bikram_yoga = parseInt(ocena_bikram_yoga);
+            }
+
+
+            var ocena_hatha_yoga = localStorage.getItem("ocena_hatha_yoga");
+
+            if (ocena_hatha_yoga == null) {
+                ocena_hatha_yoga = 0;
+            }
+            else {
+                ocena_hatha_yoga = parseInt(ocena_hatha_yoga);
+            }
+
+            var ocena_core_hard = localStorage.getItem("ocena_core_hard");
+
+            if (ocena_core_hard == null) {
+                ocena_core_hard = 0;
+            }
+            else {
+                ocena_core_hard = parseInt(ocena_core_hard);
+            }
+            var ocena_core_easy = localStorage.getItem("ocena_core_easy");
+
+            if (ocena_core_easy == null) {
+                ocena_core_easy = 0;
+            }
+            else {
+                ocena_core_easy = parseInt(ocena_core_easy);
+            }
+
+
+            var ocena_core_medium = localStorage.getItem("ocena_core_medium");
+
+            if (ocena_core_medium == null) {
+                ocena_core_medium = 0;
+            }
+            else {
+                ocena_core_medium = parseInt(ocena_core_medium);
+            }
+
+
+
+
+
+
+
+            var ocene = [
+                {
+                    trening: "Classic pilates",
+                    ocena: ocena_klasicni_pilates,
+                    opis: "Most simple kind of pilates",
+                    link: "klasican_pilatesENG.html"
+                },
+                {
+                    trening: "Reformer pilates",
+                    ocena: ocena_reformer_pilates,
+                    opis: "Great exercise for everybody",
+                    link: "reformer_pilatesENG.html"
+                },
+                {
+                    trening: "Stot pilates",
+                    ocena: ocena_stot_pilates,
+                    opis: "Newest kind of pilates",
+                    link: "stot_pilatesENG.html"
+                },
+                {
+                    trening: "Cardio training of high intensity",
+                    ocena: ocena_visoki_cardio,
+                    opis: "Very demanding training",
+                    link: "visokENG.html"
+                },
+                {
+                    trening: "Cardio training of medium intensity",
+                    ocena: ocena_srednji_cardio,
+                    opis: "Suistable for everyone",
+                    link: "srednjiENG.html"
+                },
+                {
+                    trening: "Cardio training of low intensity",
+                    ocena: ocena_niski_cardio,
+                    opis: "Low intensity",
+                    link: "nizakENG.html"
+                },
+                {
+                    trening: "Ashtanga Yoga",
+                    ocena: ocena_ashtanga_yoga,
+                    opis: "Very demanding training",
+                    link: "ashtangaENG.html"
+                },
+                {
+                    trening: "Bikram Yoga",
+                    ocena: ocena_bikram_yoga,
+                    opis: "Medium intensity",
+                    link: "bikramENG.html"
+                },
+                {
+                    trening: "Hatha Yoga",
+                    ocena: ocena_hatha_yoga,
+                    opis: "Suistable for everyone",
+                    link: "hathaENG.html"
+                },
+                {
+                    trening: "Core - Hard",
+                    ocena: ocena_core_hard,
+                    opis: "High intensity",
+                    link: "coreHardENG.html"
+                },
+                {
+                    trening: "Core - Easy",
+                    ocena: ocena_core_easy,
+                    opis: "Low intensity",
+                    link: "coreEasyENG.html"
+                },
+                {
+                    trening: "Core - Medium",
+                    ocena: ocena_core_medium,
+                    opis: "Medium intensity",
+                    link: "coreIntermediateENG.html"
+                }
+
+            ]
+
+            //   alert(ocene[0].trening+" "+ocene[0].ocena);
+
+
+            // var niz=sortiraj(ocene);
+            ocene.sort(function (a, b) {
+                return b.ocena - a.ocena;
+            });
+
+            //   alert(ocene[0].trening);
+
+            document.getElementById("prvi_najbolji").innerHTML = "<div class='card kartica'> <br><h3 class='trening_naslov'>" + ocene[0].trening + "</h3> <p class='ocena'> Rating: " + ocene[0].ocena + "/10" + "</p> <p class='opis'>" + ocene[0].opis + "</p> <p><a class='link_trening' href=" + ocene[0].link + ">Learn more</a>"
+            document.getElementById("drugi_najbolji").innerHTML = "<div class='card kartica'> <br><h3 class='trening_naslov'>" + ocene[1].trening + "</h3> <p class='ocena'> Rating: " + ocene[1].ocena + "/10" + "</p> <p class='opis'>" + ocene[1].opis + "</p> <p><a class='link_trening' href=" + ocene[1].link + ">Learn more</a>"
+            document.getElementById("treci_najbolji").innerHTML = "<div class='card kartica'> <br><h3 class='trening_naslov'>" + ocene[2].trening + "</h3> <p class='ocena'> Rating: " + ocene[2].ocena + "/10" + "</p> <p class='opis'>" + ocene[2].opis + "</p> <p><a class='link_trening' href=" + ocene[2].link + ">Learn more</a>"
+
+        }
+
+        /*     function sortiraj(ocene){
+                 ocene.sort(function(a,b){
+                 return a.ocena-b.ocena;
+             });}*/
+
+    </script>
+</head>
+<body onload="ucitaj()">
+    <div class='container'>
+        <div class='row header'>
+            <div class='col-sm-2 text-left  '>
+                <img src='pob.jpg' height='90px' width='70%'>
+            </div>
+            <div class='col-sm-2 text-left '>
+                <p class='logo'>Teretana Pobednik</p>
+            </div>
+            <div class='col-sm-8 lista'>
+                <nav>
+                    <ul>
+                        <li><a href="indexENG.html" style="color: yellow;">Home</a></li>
+                        <li><a href='uslugeENG.html'>Services</a></li>
+                        <li><a href="ZakazivanjeENG.html">Appointments</a></li>
+                        <li><a href="mojNalogENG.html">My Account</a></li>
+                        <li><a href="About.html">About us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-sm-12 slika'>
+                <div class='row'>
+                    <div class='col-sm-12 text-right ljub'>
+                        <br>
+                        <p class='tekst'>Become a member of our gym, and enjoy your healthy and good-looking
+                            appearance.<br />
+                            Join us today!</p>
+                        <input class='btn btn-success' value='See our offers' onclick='saznaj()'>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12 slikaispod'>
+                Train in the very heart of Belgrade! <br>
+                Address: Strahinjića Bana 70<br>
+                Contact number: 011/123-4567
+            </div>
+        </div>
+        <a name='usluge'></a>
+        <div class='row drugi'>
+            <div class='col-sm-4 text-center dr'>
+                <div class="card" style="width: 100%;">
+                    <div class="inner">
+                        <img src="prva.jpg" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Training programs</h5>
+                        <p class="card-text">
+                            Fitness center Pobednik offers various programs for all ages.
+                            Apart from the well-known programs realised according to the schedule,
+                            clients also have the modern gym with the most contemporary equipment at
+                            their disposal.
+                        </p>
+                        <a href="#" class="btn btn-success" onclick='trening()'>Learn more</a>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-4 text-center'>
+                <div class="card " style="width: 100%;">
+                    <div class="inner"> <img src="druga.jpg" class="card-img-top" alt="..."></div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Nutricionist</h5>
+                        <p class="card-text">
+                            Fitness center Pobednik offers nutricional services
+                            to its clients. In case you need a diet, or you simply
+                            want to feed more healthy, our professional nutricionist is
+                            always there for you. She will recommend you an adequate nutrition.
+                        </p>
+                        <a href="#" class="btn btn-success" onclick='nutricionista()'>Learn more</a>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-4 text-center'>
+                <div class="card " style="width: 100%;">
+                    <div class="inner">
+                        <img src="treca.jpg" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Massage</h5>
+                        <p class="card-text">
+                            Fitness center Pobednik offers its clients various kinds of massages,
+                            both relaxing massages and therapeutical ones.
+                            <!-- Bila je lepsa recenica, ali onda gura u novi red pa se ne poklapa lepo-->
+                            Whether you just want to relax, or you need to improve your health,
+                            our experts will always find the best therapy for you.
+                        </p>
+                        <a href="#" class="btn btn-success" onclick='masaza()'>Learn more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class='row'>
+            <div class='col-sm-12 text-center'>
+                <h2 class='najbolje_naslov'>Best rated trainings</h2>
+            </div>
+        </div>
+        <br>
+        <div class='row'>
+            <!--       <div class='col-sm-12 zena'>
+                       <br> <br> <br> <br> <br> <br> <br> <br> <br>
+                           <div class='row '>
+                               <div class='col-sm-10 ljubicasto text-center'>
+                                   Raspored termina
+                               </div>
+                           </div>
+                       </div> -->
+            <div class='col-sm-4 text-center' id='prvi_najbolji'>
+
+            </div>
+            <div class='col-sm-4 text-center' id='drugi_najbolji'>
+
+            </div>
+            <div class='col-sm-4 text-center' id='treci_najbolji'>
+
+            </div>
+        </div>
+        <br>
+        <div class='row'>
+            <div class='col-sm-12 tim'>
+                <h1>Our team is always there for you</h1>
+            </div>
+        </div>
+        <br>
+    </div>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='team-row'>
+                    <div class='profile-box'>
+                        <h4>Filip</h4>
+                        <small><b>Instructor</b></small>
+                        <div>
+                            <img src='filip.jpg'>
+                        </div>
+                        <br> <br>
+                        <p>
+                            Filip has been a member of our gym for more than a few years.
+                            He is very dedicated to his job and is the favourite among the clients.
+                        </p>
+                    </div>
+                    <div class='profile-box'>
+                        <h4>Vanja</h4>
+                        <small><b>Instructor</b></small>
+                        <div>
+                            <img src='coka.jpg'>
+                        </div>
+                        <br> <br>
+                        <p>
+                            Vanja is our youngest coach
+                            She is very motivated, and she carries that mood over to her clients.
+                        </p>
+                    </div>
+                    <div class='profile-box'>
+                        <h4>Vukasin</h4>
+                        <small><b>Masseur</b></small>
+                        <div>
+                            <img src='vukasin.jpg'>
+                        </div>
+                        <br> <br>
+                        <p>
+                            Vukasin is our masseur, but he is an excellent coach as well.
+                            He is always ready to assist his clients.
+                        </p>
+                    </div>
+                    <div class='profile-box'>
+                        <h4>Zvezdana</h4>
+                        <small><b>Nutriconist</b></small>
+                        <div>
+                            <img src='zvezdana.jpg'>
+                        </div>
+                        <br> <br>
+                        <p>
+                            Zvezdana is our nutricionist.
+                            She keeps a great relationship with her clients,
+                            and she is there to guide them towards healthy nutrition and habits.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='row strucnjaci'>
+            <div class='col-sm-7 pitanja text-left'>
+                <h1>Write to us:</h1>
+                <table class="text-left table">
+                    <tr>
+                        <td>Name and surname:</td>
+                        <td><input type='text'></td>
+                    </tr>
+                    <tr>
+                        <td>E-mail:</td>
+                        <td><input type='text'></td>
+                    </tr>
+                    <tr>
+                        <td>Message:</td>
+                        <td><textarea cols='35' rows='4'></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align='left'>
+                            <input class='btn btn-success' value='Send'>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class='col-sm-5'>
+                <img src='mapa.PNG' width='100%' height='300px'>
+            </div>
+        </div>
+
+        <div class='row'>
+
+            <div class='col-sm-12 meni'>
+                <h3 class='menuheader'>
+                    Read more
+                </h3>
+            </div>
+        </div>
+
+        <div class='row meni'>
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Services
+                </h4>
+                <p>
+                    <a href="treningENG.html" class='menielem'>Training </a>&nbsp;&nbsp;
+                    <i class="em em-muscle" aria-role="presentation" aria-label="FLEXED BICEPS"></i>
+                    <br />
+                    <a href="nutricionistaENG.html" class='menielem'>Nutricionist</a>
+                    &nbsp;&nbsp;
+                    <i class="em em-banana" aria-role="presentation" aria-label="BANANA"></i>
+                    <br />
+                    <a href="masazaENG.html" class='menielem'>Massages</a>&nbsp;&nbsp;
+                    <i class="em em-massage" aria-role="presentation" aria-label="FACE MASSAGE"></i>
+                </p>
+                <br />
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Staff
+                </h4>
+                <p>
+                    <a href="FilipENG.html" class='menielem'>Filip </a>
+                    <i class="em em-man-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="VanjaENG.html" class='menielem'>Vanja</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="VukasinENG.html" class='menielem'>Vukasin</a>
+                    <i class="em em-weight_lifter" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="ZvezdanaENG.html" class='menielem'>Zvezdana</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                </p>
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Schedule
+                </h4>
+                <p>
+                    <a href="ZakazivanjeENG.html" class='menielem'>See our schedule</a>
+                    <i class="em em-calendar" aria-role="presentation" aria-label="TEAR-OFF CALENDAR"></i>
+                </p>
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    My Account
+                </h4>
+                <p>
+                    <a href="mojNalogENG.html" class='menielem'>Account</a>
+                    <i class="em em-male-technologist" aria-role="presentation" aria-label=""></i>
+                    <br />
+                <h4 class='menuheader'>
+                    Languages/Jezici
+                </h4>
+                <div style="font-size: 10px;">
+                    <p>
+                        <a href="indexENG.html"> <img src="jack.png" alt="" height="15" width="30"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="index.html"><img src="srbija.png" alt="" height="15" width="30"></a>
+                        <br />
+                        <a style="text-decoration: none; color: white;" href="indexENG.html">English</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a style="text-decoration: none; color: white;" href="index.html">Serbian</a>
+                    </p>
+                </div>
+                </p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-sm-12 footer'>
+                „Copyright 2020, Јована Јанковић, Филип Лучић, Одсек за софтверско инжењерство Електротехничког
+                факултета
+                Универзитета у Београду"
+            </div>
+        </div>
+    </div>
+</body>
+</html>

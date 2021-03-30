@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <title>Booking form</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel='stylesheet' href='masaza_formular.css'>
+      <!--  <script src='file:///C:/Users/Marina/Desktop/projekat%20veb%20dizajn/jspdf.min.js'></script> -->
+        <script src='jspdf.min.js'></script>
+        <script>
+            function HTMLtoPDF(){
+                if(document.forma_masaza.ime.value!=""){
+                    if(document.forma_masaza.prezime.value!=""){
+                        if(document.forma_masaza.email.value!=""){
+                            var regex = /^\w+(-\w+)?@\w+(\.\w{2,3})$/;
+                            if(regex.test(document.forma_masaza.email.value)){
+                                let zakazano=new Date(document.forma_masaza.datum.value);
+                                zakazano=zakazano.getTime();
+                                let danasnji_dan = new Date();
+                                danasnji_dan=danasnji_dan.getTime();
+                                if(document.forma_masaza.datum.value!="" && zakazano>danasnji_dan){
+                                    if(document.forma_masaza.kontakt.value!=""){
+                                        var regex = /^\d{3}\/\d{3}-\d{2}-\d{2}$/;
+                                        if(regex.test(document.forma_masaza.kontakt.value)){
+                                            //LINIJU ISPOD SAM PROMENIO JER JE PISALO !== null
+                                            if ('localStorage' in window && window.localStorage !== null) {
+                                                
+                                                localStorage.setItem("ime", document.forma_masaza.ime.value);
+												localStorage.setItem("prezime", document.forma_masaza.prezime.value);
+												localStorage.setItem("email", document.forma_masaza.email.value);
+												localStorage.setItem("datum", document.forma_masaza.datum.value);
+												localStorage.setItem("kontakt", document.forma_masaza.kontakt.value);
+                                                if(document.forma_masaza.problem.value!=""){
+                                                    localStorage.setItem("problem",document.forma_masaza.problem.value);
+                                                }
+                                                var doc = new jsPDF();
+                                                doc.setFontSize(22);
+                                                doc.text(60, 20, 'Your personal information:');
+                                                doc.setFontSize(16);
+                                                doc.text(20, 30, "Name: ".concat(localStorage.getItem('ime')));
+                                                doc.text(20, 40, "Surname: ".concat(localStorage.getItem('prezime')));
+                                                doc.text(20, 50, "E-mail address: ".concat(localStorage.getItem('email')));
+                                                doc.text(20, 70, "Appointment date: ".concat(localStorage.getItem('datum')));
+                                                doc.text(20, 60, "Phone number: ".concat(localStorage.getItem('kontakt')));
+                                                
+                                                if(localStorage.getItem('problem')!=null){
+                                                doc.text(20, 80, "Problem description: ".concat(localStorage.getItem('problem')));}
+                                               
+                                                doc.save('formular.pdf');
+                                               
+                                              //  localStorage.clear();
+                                          
+                                            } else {
+												alert("Sorry");
+											}
+                                        }
+                                        else{
+                                            alert("You didn't enter the phone number correctly!");
+                                        }
+                                    }
+                                    else{
+                                        alert("You didn't enter the phone number!");
+                                    }
+
+                                }
+                                else{
+                                    alert("You didn't enter the correct date!");
+                                }
+                            }
+                            else{
+                                alert("You didn't enter the correct e-mail!");
+                            }
+                        }
+                        else{
+                            alert("You didn't enter the e-mail address!");
+                        }
+                    }
+                    else{
+                        alert("You didn't enter your surname!");
+                    }
+                }
+                else{
+                    alert("You didn't enter your name!");
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-sm-2 text-left header'>
+                    <img src='pob.jpg' height='90px' width='70%'>
+                </div>
+                <div class='col-sm-2 text-left header'>
+                    <p class='logo'>Teretana Pobednik</p>
+                </div>
+                <div class='col-sm-8 header lista'>
+                    <nav>
+                        <ul>
+                            <li><a href='indexENG.html'>Home</a></li>
+                            <li><a href='uslugeENG.html' style="color: yellow;">Services</a></li>
+                            <li><a href='ZakazivanjeENG.html'>Appointment</a></li>
+                            <li><a href='mojNalogENG.html'>My Account</a></li>
+                            <li><a href="About.html">About us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+               
+            </div>
+            <div class='row'>
+                <div class='col-sm-12 navigacija'>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb purple lighten-4">
+                          <li class="breadcrumb-item"><a class="black-text" href="indexENG.html">Home</a></li>
+                          <li class="breadcrumb-item"><a class="black-text" href="masazaENG.html">Massage</a></li>
+                          <li class="breadcrumb-item active">Massage appointment</li>
+                        </ol>
+                      </nav>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-sm-12 pozadina'>
+                   <div  class='sign-up'>
+                        <h1>Make an appointment</h1>
+                    <form name='forma_masaza'>
+                        <input type='text' name='ime' class='input-box' placeholder="Name">
+                        <input type='text' name='prezime' class='input-box' placeholder="Surname">
+                        <input type='text' name='email' class='input-box' placeholder="E-mail address">
+                        <input type='date' name='datum' class='input-box'>
+                        <input type='text' name='kontakt' class='input-box' placeholder="Phone number">
+                        <textarea cols='50' name='problem' rows='4' class='input-box' placeholder="Problem description"></textarea>
+                        <button type='button' class='sign-btn' onclick='HTMLtoPDF()'> Book</button>
+                    </form>
+                   </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-sm-12 footer'>
+                    „Copyright 2020, Јована Јанковић, Филип Лучић, Одсек за софтверско инжењерство Електротехничког факултета
+                    Универзитета у Београду"
+                </div>
+              </div>
+         </div>
+     </body>
+ </html>

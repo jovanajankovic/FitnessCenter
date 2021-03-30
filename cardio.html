@@ -1,0 +1,240 @@
+<html>
+
+    <head>
+        <title>Cardio</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+        <link rel='stylesheet' href='trening.css'>
+
+        <script>
+         function nizak(){
+                window.open('nizak.html');
+            }
+            function srednji(){
+                window.open('srednji.html');
+            }
+            function visok(){
+                window.open('visok.html');
+            }
+
+
+    var cardio = [
+
+{
+    ime: "Niskog intenziteta",
+    trajanje: 60,
+    tezina: 2,
+    link: "nizak.html"
+},
+
+{
+    ime: "Srednjeg intenziteta",
+    trajanje: 40,
+    tezina: 3,
+    link: "srednji.html"
+},
+
+{
+    ime: "Visokog intenziteta",
+    trajanje: 30,
+    tezina: 5,
+    link: "visok.html"
+}
+]
+
+function ucitaj(){
+document.getElementById("vrste").innerHTML = "<a class=linkovi href="+cardio[0].link+">"+cardio[0].ime+"</a>"+"<br>"+"<a class=linkovi href="+cardio[1].link+">"+cardio[1].ime+"</a>"+"<br>"+"<a class=linkovi href="+cardio[2].link+">"+cardio[2].ime+"</a>";
+}
+
+function poImenu() {
+cardio.sort(function(a, b){
+if(a.ime < b.ime) { return -1; }
+if(a.ime > b.ime) { return 1; }
+return 0;
+})
+document.getElementById("vrste").innerHTML = "<a class=linkovi href="+cardio[0].link+">"+cardio[0].ime+"</a>"+"<br>"+"<a class=linkovi href="+cardio[1].link+">"+cardio[1].ime+"</a>"+"<br>"+"<a class=linkovi href="+cardio[2].link+">"+cardio[2].ime+"</a>";
+}
+
+function poTrajanju() {
+cardio.sort(function(a, b){ return a.trajanje - b.trajanje});
+document.getElementById("vrste").innerHTML = "<a class=linkovi href="+cardio[0].link+">"+cardio[0].ime+"</a>"+" ("+cardio[0].trajanje+"min)"+"<br>"+"<a class=linkovi href="+cardio[1].link+">"+cardio[1].ime+"</a>"+" ("+cardio[1].trajanje+"min)"+"<br>"+"<a class=linkovi href="+cardio[2].link+">"+cardio[2].ime+"</a>" +" ("+cardio[2].trajanje+"min)";
+}
+
+function poTezini(){
+cardio.sort(function(a, b){return a.tezina - b.tezina});
+document.getElementById("vrste").innerHTML ="<a class=linkovi href="+cardio[0].link+">"+cardio[0].ime+"</a>"+" ("+cardio[0].tezina+"/5)"+"<br>"+"<a class=linkovi href="+cardio[1].link+">"+cardio[1].ime+"</a>"+" ("+cardio[1].tezina+"/5)"+"<br>"+"<a class=linkovi href="+cardio[2].link+">"+cardio[2].ime+"</a>" +" ("+cardio[2].tezina+"/5)";
+}
+
+            
+        </script>
+    </head>
+
+    <body onload='ucitaj()'>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-sm-2 text-left header'>
+                    <img src='pob.jpg' height='90px' width='70%'>
+                </div>
+                <div class='col-sm-2 text-left header'>
+                    <p class='logo'>Teretana Pobednik</p>
+                </div>
+                <div class='col-sm-8 header lista'>
+                    <nav>
+                        <ul>
+                            <li><a href='index.html'>Početna</a></li>
+                            <li><a  href='usluge.html' style="color: yellow;">Usluge</a></li>
+                            <li><a href='Zakazivanje.html'>Zakazivanje treninga</a></li>
+                            <li><a href='mojNalog.html'>Moj nalog</a></li>
+                            <li><a href="O nama.html">O nama</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-sm-12 navigacija'>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb purple lighten-4">
+                          <li class="breadcrumb-item"><a class="black-text" href="index.html">Pocetna</a></li>
+                          <li class="breadcrumb-item"><a class="black-text" href="trening.html">Treninzi</a></li>
+                          <li class="breadcrumb-item active">Cardio trening</li>
+                        </ol>
+                      </nav>
+                </div>
+            </div>
+				
+            <div class='row spusti'>
+                <div class='col-sm-6'>
+                    <h1 class='naslov'>Cardio</h1>
+                    <br>
+                    <p class='par'>
+                        Cardio-vežbe su neophodne za svaki efikasan program treninga,
+                        ne samo za <font color='#722F83'>sagorevanje masnoća</font>, već i za 
+                        <font color='#722F83'>celokupno dobro zdravlje.</font>
+                        Po definiciji, kardio-trening može biti bilo šta od vežbi - trčanje, vožnja bicikla,
+                        plivanje, trčanje na traci, stepenice, preskakanje konopca - koje <font color='#722F83'>održavaju visok ritam rada srca</font>
+                        u
+                        određenom vremenskom periodu.
+                        Cardio-vežbama <font color='#722F83'>jačate srce i pluća</font>
+                        i smanjujete broj otkucaja srca u stanju mirovanja.
+                    </p>
+                    <h3 class='podnaslov'>Kome je namenjen?</h3>
+                    <p class='par'>
+                    Ovaj trening mogu da posećuju <font color='#722F83'>sve osobe</font>, od neaktivnih poslovnih ljudi
+                     koji žele samo da poboljšaju držanje tela i olakšaju sebi kancelarijski posao, 
+                     do iskusnih vežbača koji zele da vode racuna o svom zdravlju i izgledu istovremeno.
+                    </p>
+                    <br>
+                  <!--  <h2 class='naslov'>Vrste cardio treninga:</h2>
+                    <button class='btn btn-lg dugme1' onclick='nizak()'>Niskog intenziteta</button> 
+                    <button class='btn btn-lg dugme1' onclick='srednji()'>Srednjeg intenziteta</button> 
+                    <button class='btn btn-lg dugme1' onclick='visok()'>Visokog intenziteta</button>  -->
+                    <p id="vrste"></p> 
+                    <button class='btn dugme' onclick='poImenu()'>Sortiraj po imenu</button>
+                    <button class='btn dugme' onclick='poTrajanju()'>Sortiraj po trajanju</button>
+                    <button class='btn dugme' onclick='poTezini()'>Sortiraj po nivou tezine</button>
+                </div>
+                <div class='col-sm-6 text-center'>
+                    <div>
+                        <img src='cardio/kardio.jpg' width='460' height='300'> 
+                    </div>
+                    <br>
+                    <div>
+                        <img src='cardio/karidio.png' width='460' height='300'> 
+                    </div>
+                    <br>
+                </div>           
+            </div>
+
+            <div class='row'>
+                <div class='col-sm-12 meni'> 
+                    <h3 class='menuheader'>
+                        Procitajte jos
+                    </h3>
+                </div>
+            </div>
+            
+            <div class='row meni'>
+                <div class='col-sm-3 meni'> 
+                    <h4 class='menuheader'>
+                        Usluge
+                    </h4>
+                <p>
+                            <a href="trening.html" class= 'menielem'>Treninzi </a>&nbsp;&nbsp;
+                            <i class="em em-muscle" aria-role="presentation" aria-label="FLEXED BICEPS"></i>
+                            <br/>
+
+                            <a href="nutricionista.html"  class= 'menielem'>Nutricionista</a>
+                            &nbsp;&nbsp;
+                            <i class="em em-banana" aria-role="presentation" aria-label="BANANA"></i>
+                            <br/>
+                            <a href="masaza.html"  class= 'menielem'>Masaze</a>&nbsp;&nbsp;
+                            <i class="em em-massage" aria-role="presentation" aria-label="FACE MASSAGE"></i>                                                     
+                </p> 
+                <br/>
+                </div>
+
+                <div class='col-sm-3 meni'> 
+                    <h4 class='menuheader'>
+                        Zaposleni
+                    </h4>
+                    <p>
+                        <a href="Filip.html" class= 'menielem'>Filip </a>
+                        <i class="em em-man-lifting-weights" aria-role="presentation" aria-label=""></i>
+                        <br/>                
+                        <a href="Vanja.html"  class= 'menielem'>Vanja</a>
+                        <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                        <br/>          
+                        <a href="Vukasin.html"  class= 'menielem'>Vukasin</a>
+                        <i class="em em-weight_lifter" aria-role="presentation" aria-label=""></i>
+                        <br/>
+                        <a href="Zvezdana.html"  class= 'menielem'>Zvezdana</a>
+                        <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+      
+                    </p> 
+                </div>
+
+                <div class='col-sm-3 meni'> 
+                    <h4 class='menuheader'>
+                        Raspored     
+                    </h4>
+                    <p>
+                     <a href="Zakazivanje.html"  class= 'menielem'>Kompletan raspored</a>
+                     <i class="em em-calendar" aria-role="presentation" aria-label="TEAR-OFF CALENDAR"></i>
+                    </p>
+                </div>
+
+                <div class='col-sm-3 meni'> 
+                    <h4 class='menuheader'>
+                        Moj Nalog
+                    </h4>
+                    <p>
+                    <a href="mojNalog.html"  class= 'menielem'>Nalog</a> 
+                    <i class="em em-male-technologist" aria-role="presentation" aria-label=""></i>
+                    <br/>
+                    <h4 class='menuheader'>
+                        Jezici/Languages
+                    </h4>
+                    <div  style="font-size: 10px;"> 
+                        <p>
+                            <a href="cardioENG.html"> <img src="jack.png" alt="" height="15" width="30"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="cardio.html"><img src="srbija.png" alt="" height="15" width="30"></a>
+                        <br/>
+                        <a style="text-decoration: none; color: white;" href="cardioENG.html">engleski</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                         <a style="text-decoration: none; color: white;" href="cardio.html">srpski</a> 
+
+                        </p>  
+                    </div>
+                    </p>
+               </div>
+            </div>
+            
+            <div class='row'>
+                <div class='col-sm-12 footer'>
+                    „Copyright 2020, Јована Јанковић, Филип Лучић, Одсек за софтверско инжењерство Електротехничког факултета
+                    Универзитета у Београду"
+                </div>
+            </div>
+        </div>
+    </body>
+</html>        

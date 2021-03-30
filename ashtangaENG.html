@@ -1,0 +1,432 @@
+<html>
+
+    <head>
+        <title>Yoga - Ashtanga - ENG</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel='stylesheet' type='text/css' href='lightbox2-2.11.1/lightbox2-2.11.1/dist/css/lightbox.min.css'>
+        <script type='text/javascript' src='lightbox2-2.11.1/lightbox2-2.11.1/dist/js/lightbox-plus-jquery.min.js'></script>
+        <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel='stylesheet' href='file:///C:/Users/Marina/Desktop/fontawesome-free-5.13.0-web/fontawesome-free-5.13.0-web/css/all.css'></link>
+        <link rel='stylesheet' href='trening.css'>
+        <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+     <!-- <link rel="stylesheet" href="VenoBox-master/VenoBox-master/venobox/venobox.css" type="text/css" media="screen" /> -->
+     <link rel="stylesheet" href="VenoBox-1.9.0/VenoBox-1.9.0/venobox/venobox.css" type="text/css" media="screen" />
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <!--  <script type="text/javascript" src="VenoBox-master/VenoBox-master/venobox/venobox.min.js"></script> -->
+   <script type="text/javascript" src="VenoBox-1.9.0/VenoBox-1.9.0/venobox/venobox.min.js"></script>
+        <script>
+            var korisnici;
+            var ime,prezime;
+            var trening_program="Ashtanga Yoga";
+            var komentari=[];
+            var broj_ocena=0;
+            var korisnik;
+    
+            function ucitaj(){
+                $('.venobox').venobox(); 
+
+                if(localStorage.getItem("hello_ashtanga_yoga")){ //znaci da je neko pritisnuo refresh
+                komentari=localStorage.getItem("komentari_ashtanga_yoga");
+                komentari=JSON.parse(komentari);
+              //  broj_ocena=localStorage.getItem("broj_ocena");    
+                }
+    
+                var ukupno=localStorage.getItem("suma_ocena_ashtanga_yoga");
+    
+                korisnik=localStorage.getItem("korisnik");
+                    korisnik=JSON.parse(korisnik);
+                    ime=korisnik.ime;
+                    prezime=korisnik.prezime;    
+            
+                if(ukupno==null){
+                    document.getElementById("ocena").innerHTML="The program isn't rated yet";
+                }
+                else{
+                    var broj=localStorage.getItem("broj_ocena_ashtanga_yoga");
+                    broj=parseInt(broj);
+                    ukupno=parseInt(ukupno);
+                    var upisi=ukupno/broj;
+                    upisi=upisi.toFixed(1);
+                    document.getElementById("ocena").innerHTML=upisi+"/10";
+                }
+                
+    
+                korisnici=localStorage.getItem("korisnici");
+                korisnici=JSON.parse(korisnici);
+             //   ime="Jovana";
+              //  prezime="Jankovic";
+    
+                var dohvati_komentare;
+                dohvati_komentare=localStorage.getItem("komentari_ashtanga_yoga");
+                dohvati_komentare=JSON.parse(dohvati_komentare);
+                for(var i=0;i<dohvati_komentare.length;i++){
+                    document.getElementById("komentar"+i).style.backgroundColor='lightgray';
+                    document.getElementById("komentar"+i).innerHTML=dohvati_komentare[i];
+                }
+            }
+    
+            function posaljiKomentar(){
+                if(document.forma.komentar.value==""){
+                    alert("You can't post an empty comment");
+                    return;
+                }
+    
+                var jeste=false;
+                var jeste_jeste=false;
+             
+                for(var i=0;i<korisnici.length;i++){
+                        for(var j=0;j<korisnici[i].trening.length;j++){
+                            if(korisnici[i].trening[j]==trening_program){
+                                jeste_jeste=true;
+                                if(korisnici[i].ime==ime && korisnici[i].prezime==prezime){
+                                    jeste=true;
+                                }
+                               break;
+                            }
+                        }
+    
+                        if(jeste==true && jeste_jeste==true){
+                            break;
+                        }
+               }
+    
+                if(jeste==true && jeste_jeste==true){
+                   var broj_komentara=localStorage.getItem("broj_komentara_ashtanga_yoga");
+                   if(broj_komentara==null){
+                       broj_komentara=0;
+                   }
+                   document.getElementById("komentar"+broj_komentara).style.backgroundColor='lightgray';
+                   document.getElementById("komentar"+broj_komentara).innerHTML=document.forma.komentar.value;
+                    
+                    komentari[broj_komentara]=document.forma.komentar.value;
+                    localStorage.setItem("komentari_ashtanga_yoga",JSON.stringify(komentari));
+                    broj_komentara++;
+                    localStorage.setItem("broj_komentara_ashtanga_yoga",broj_komentara);
+                    localStorage.setItem("hello_ashtanga_yoga",1);
+                    alert("Your comment has been posted successfully!");
+                }
+                else{
+                    alert("You never attended this training program! You cannot leave a comment!");
+                }
+            }
+    
+            function obrisiStorage(){
+                localStorage.clear();
+            }
+    
+            function oceni(){
+                var ocenaString=document.forma_ocena.ocena.value; //dohvaceno iz forme
+                var ocena=parseInt(ocenaString); //parsirano u int
+               
+                if(ocena<1 || ocena>10){
+                    alert("Wrong value! Rating must be a whole number between 1-10");
+                    return;
+                }
+                if(isNaN(ocena)){
+                    alert("Rating can only be a whole number between 1-10");
+                    return;
+                }
+    
+                //provera da li je prisutan na tim treninzima
+                var jeste=false;
+                var jeste_jeste=false;
+                for(var i=0;i<korisnici.length;i++){
+                        for(var j=0;j<korisnici[i].trening.length;j++){
+                            if(korisnici[i].trening[j]==trening_program){
+                                jeste_jeste=true;
+                                if(korisnici[i].ime==ime && korisnici[i].prezime==prezime){
+                                    jeste=true;
+                                }
+                               break;
+                            }
+                        }
+                        if(jeste==true && jeste_jeste==true){
+                            break;
+                        }
+               }
+    
+               if(jeste==true && jeste_jeste==true){
+                var ukupnaOcena=localStorage.getItem("suma_ocena_ashtanga_yoga"); //do sada suma svih ocena
+                if(ukupnaOcena==null){ //prvi put ulazi u fju
+                    broj_ocena++;
+                    ukupnaOcena=0;
+                    document.getElementById("ocena").innerHTML=ocena+"/10"; //upisuje se prva ocena jer do sada nije bilo ocena
+                    localStorage.setItem("suma_ocena_ashtanga_yoga",ocena); //cuvam tu sumu ocena, odnosno u ovom slucaju taj jedan broj
+                    localStorage.setItem("broj_ocena_ashtanga_yoga",broj_ocena); //koliko je bilo ocena do sada
+                    localStorage.setItem("ocena_ashtanga_yoga",ocena);
+                    return;
+                }
+                else{
+                var ukupnaOcena=parseInt(ukupnaOcena);
+                var ocenaUpis=ukupnaOcena+ocena; //dodaje novu ocenu na sumu svih ocena
+                localStorage.setItem("suma_ocena_ashtanga_yoga",ocenaUpis); //cuva se ta
+                broj_ocena=localStorage.getItem("broj_ocena_ashtanga_yoga"); //broj ocena se dohvata
+                broj_ocena=parseInt(broj_ocena); 
+                broj_ocena++;
+                ocenaUpis=ocenaUpis/broj_ocena;
+                ocenaUpis = ocenaUpis.toFixed(1);
+                document.getElementById("ocena").innerHTML=ocenaUpis+"/10";
+                localStorage.setItem("broj_ocena_ashtanga_yoga",broj_ocena);
+                localStorage.setItem("ocena_ashtanga_yoga",ocenaUpis);
+               //alert("Ocena za klasicni pilates: "+ ocenaUpis);
+                }
+               }
+               else{
+                   alert("You never attended this training program! You cannot leave a comment!");
+               }
+            }
+    
+        </script>
+        
+    </head>
+
+    <body onload="ucitaj()">
+        <div class='container'>
+            <div class='row'>
+                <div class='col-sm-2 text-left header'>
+                    <img src='pob.jpg' height='90px' width='70%'>
+                </div>
+                <div class='col-sm-2 text-left header'>
+                    <p class='logo'>Teretana Pobednik</p>
+                </div>
+                <div class='col-sm-8 header lista'>
+                    <nav>
+                        <ul>
+                            <li><a href="indexENG.html">Home</a></li>
+                            <li ><a href='uslugeENG.html' style="color: yellow;">Services</a></li>
+                            <li><a href="ZakazivanjeENG.html">Appointments</a></li>
+                            <li><a href="mojNalogENG.html">My Account</a></li>
+                            <li><a href="About.html">About us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col-sm-12 navigacija'>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb purple lighten-4">
+                          <li class="breadcrumb-item"><a class="black-text" href="indexENG.html">Home</a></li>
+                          <li class="breadcrumb-item"><a class="black-text" href="treningENG.html">Training</a></li>
+                          <li class="breadcrumb-item"><a class="black-text" href="yogaENG.html">Yoga</a></li>
+                          <li class="breadcrumb-item active">Ashtanga Yoga</li>
+                        </ol>
+                      </nav>
+                </div>
+            </div>
+
+            <div class='row spusti'>
+                <div class='col-sm-12'>
+                    <h1 class='naslov'>Yoga - Ashtanga</h1>
+                    <br>
+                    <p class='paragraf '>
+
+                        In Sanskrit, ashtanga is translated as "Eight Limb path." This type of yoga focuses on linking breath
+                        with movement. This training consists of a very demanding sequence of postures and breath synchronisation,
+                        so it is really not recommended for beginners. Ashtanga can be quite exauhsting even for a yogi with a huge
+                        experience. Ashtanga starts with five sun salutation A's and five sun salutation B's and then moves into a 
+                        series of standing and floor postures. If you truly love yoga, then this course is gor you!
+                    </p>
+                </div>
+              
+            </div>
+            <br>
+            <div class='row'>
+                <div class='col-sm-4'>
+                    <img src='yoga/ashtanga1.jpg' width='100%' height="350"> 
+                </div>
+                <div class='col-sm-4  text-center'>
+                    <h2 class='tezina'>Training difficulty</h2>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+               <br>
+               <br>
+               <h2 class='tezina'>Training length</h2>
+               <p class='trajanje'>60 min</p>
+               
+               <h2 class='tezina'>Training rating</h2>
+               <p class='trajanje' id='ocena'></p>
+               <form name='forma_ocena'>
+                <input type='text' name='ocena' placeholder="Enter your rating"> 
+                </form>
+                 <button class='btn dugme2' onclick='oceni()'>Rate</button>
+                </div>
+                <div class='col-sm-4'>
+                    <img src='yoga/ashtanga2.jpg' width='100%' height="350">
+                </div>
+            </div>
+            <br>
+                   <!--za komentare-->
+                   <div class='row'>
+                    <div class='col-sm-12' style="text-align: center;">
+                        <form name='forma'>
+                            <textarea cols='100' rows='4' name='komentar' placeholder="Leave a comment"></textarea>
+                        </form>
+                        <button class='btn dugme2' onclick='posaljiKomentar()'>Post a comment</button>
+                       
+                        <br>
+                        <h2 class='text-left tezina'>Clients' comments:</h2>
+                        <br>
+                        <div id='komentar0' class='kom text-left'></div>
+                        <div id='komentar1' class='kom text-left'></div>
+                        <div id='komentar2' class='kom text-left'></div>
+                        <div id='komentar3' class='kom text-left'></div>
+                        <div id='komentar4' class='kom text-left'></div>
+                        <div id='komentar5' class='kom text-left'></div>
+                        <div id='komentar6' class='kom text-left'></div>
+                        <div id='komentar7' class='kom text-left'></div>
+                        <div id='komentar8' class='kom text-left'></div>
+                        <div id='komentar9' class='kom text-left'></div>
+                        <div id='komentar10' class='kom text-left'></div>
+                        <div id='komentar11' class='kom text-left'></div>
+                        <div id='komentar12' class='kom text-left'></div>
+                        <div id='komentar13' class='kom text-left'></div>
+                        <div id='komentar14' class='kom text-left'></div>
+                        <div id='komentar15' class='kom text-left'></div>
+                        <div id='komentar16' class='kom text-left'></div>
+                        <div id='komentar17' class='kom text-left'></div>
+                        <div id='komentar18' class='kom text-left'></div>
+                        <div id='komentar19' class='kom text-left'></div>
+                        <div id='komentar20' class='kom text-left'></div>
+                    </div>
+                </div>
+           
+            <!--za galeriju slika-->
+            <br>
+            <h2 class='text-left tezina'>Image gallery: </h2>
+            <br>
+            <div class='row gallery'>
+                <div class='col-sm-4'>
+                    <a href='yoga/rsz_poslednja.jpg' data-lightbox="mygallery"> <img src='yoga/poslednja.jpg' width='100%' height='200px'> </a>
+                </div>
+                <div class='col-sm-4'>
+                    <a href='yoga/rsz_ash2.jpg' data-lightbox='mygallery'>  <img src='yoga/ash2.jpg' width='100%' height='200px'> </a>
+                </div>
+                <div class='col-sm-4'>
+                    <a href='yoga/rsz_ashtanga3.jpg' data-lightbox='mygallery'>  <img src='yoga/ashtanga3.jpg' width='100%' height='200px'> </a>
+                </div>
+            </div>
+            <br>
+            <div class='row gallery'>
+                <div class='col-sm-4'>
+                   <a href='yoga/rsz_ashtanga4.jpg' data-lightbox='mygallery'> <img src='yoga/ashtanga4.jpg' width='100%' height='200px'> </a>
+                </div>
+                <div class='col-sm-4'>
+                  <a href='yoga/rsz_ashtanga7.jpg' data-lightbox='mygallery'>  <img src='yoga/ashtanga7.jpg' width='100%' height='200px'> </a>
+                </div>
+                <div class='col-sm-4'>
+                  <a href='yoga/rsz_ashtanga6.jpg' data-lightbox='mygallery'><img src='yoga/ashtanga6.jpg' width='100%' height='200px'></a>
+                </div>
+            </div>
+            <br>
+
+            <!--Za video klipove-->
+            <h2 class='text-left tezina'>Video:</h2>
+            <br>
+            <div class='row'>
+                <div class='col-sm-2'></div>
+                <div class='col-sm-8 video' style=' text-align:center; background-image: url("yoga/video.jpg"); height:500px; background-position: center; background-size: cover;'>
+                  <a class='venobox klip' data-autoplay='true' data-vbtype='video' href='https://www.youtube.com/watch?v=pzSLOAsd0uU'><i class="fa fa-play  fa-5x" style='margin-top: 200px;' aria-hidden="true" ></i></a>
+                </div>
+                <div class='col-sm-2'></div>
+            </div>
+            <br>
+          
+        <div class='row'>
+
+            <div class='col-sm-12 meni'> 
+                <h3 class='menuheader'>
+                    Read more
+                </h3>
+            </div>
+        </div>
+
+        <div class='row meni'>
+
+            <div class='col-sm-3 meni'> 
+                <h4 class='menuheader'>
+                    Services
+                </h4>
+            <p>
+                        <a href="treningENG.html" class= 'menielem'>Training </a>&nbsp;&nbsp;
+                        <i class="em em-muscle" aria-role="presentation" aria-label="FLEXED BICEPS"></i>
+                        <br/>
+                  
+                        <a href="nutricionistaENG.html"  class= 'menielem'>Nutricionist</a>
+                        &nbsp;&nbsp;
+                        <i class="em em-banana" aria-role="presentation" aria-label="BANANA"></i>
+                        <br/>
+                        
+
+                        <a href="masazaENG.html"  class= 'menielem'>Massages</a>&nbsp;&nbsp;
+                        <i class="em em-massage" aria-role="presentation" aria-label="FACE MASSAGE"></i>                                  
+            </p> 
+            <br/>
+            </div>
+
+            <div class='col-sm-3 meni'> 
+                <h4 class='menuheader'>
+                    Staff
+                </h4>
+                <p>
+                    <a href="FilipENG.html" class= 'menielem'>Filip </a>
+                    <i class="em em-man-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br/>        
+                    <a href="VanjaENG.html"  class= 'menielem'>Vanja</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br/>                  
+                    <a href="VukasinENG.html"  class= 'menielem'>Vukasin</a>
+                    <i class="em em-weight_lifter" aria-role="presentation" aria-label=""></i>
+                    <br/>
+                    <a href="ZvezdanaENG.html"  class= 'menielem'>Zvezdana</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>                 
+                </p> 
+            </div>
+            <div class='col-sm-3 meni'> 
+                <h4 class='menuheader'>
+                    Schedule       
+                </h4>
+                <p>
+                 <a href="ZakazivanjeENG.html"  class= 'menielem'>See our schedule</a>
+                 <i class="em em-calendar" aria-role="presentation" aria-label="TEAR-OFF CALENDAR"></i>
+                </p>
+            </div>
+
+            <div class='col-sm-3 meni'> 
+                <h4 class='menuheader'>
+                    My Account
+                </h4>
+                <p>
+                <a href="mojNalogENG.html"  class= 'menielem'>Account</a> 
+                <i class="em em-male-technologist" aria-role="presentation" aria-label=""></i>
+                <br/>
+                <h4 class='menuheader'>
+                    Languages/Jezici
+                </h4>
+                <div  style="font-size: 10px;"> 
+                    <p>
+                        <a href="ashtangaENG.html"> <img src="jack.png" alt="" height="15" width="30"></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="ashtanga.html"><img src="srbija.png" alt="" height="15" width="30"></a>
+                    <br/>
+                    <a style="text-decoration: none; color: white;" href="ashtangaENG.html">English</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <a style="text-decoration: none; color: white;" href="ashtanga.html">Serbian</a> 
+                    </p>
+                </div>
+                </p>
+           </div>
+        </div>
+
+            <div class='row'>
+                <div class='col-sm-12 footer'>
+                    „Copyright 2020, Јована Јанковић, Филип Лучић, Одсек за софтверско инжењерство Електротехничког факултета
+                    Универзитета у Београду"
+                </div>
+            </div>
+        </div>
+    </body>
+</html>        

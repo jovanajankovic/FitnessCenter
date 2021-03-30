@@ -1,0 +1,134 @@
+.header{
+    background-color: #722F83;
+    color:white;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 18px;
+    font-style: normal;
+    font-variant: normal; 
+    font-weight: 100;
+    line-height: 26.4px;
+    margin-bottom: 3px;
+}
+
+.logo{
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif"; 
+    font-size: 30px;
+     font-style: normal; 
+    font-variant: normal; 
+     line-height: 26.4px;
+     padding-top: 15px;
+}
+
+/*ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+li{
+    display:inline;
+    float:right;
+}
+
+li a{
+    display:block;
+    color:white;
+    text-align: center;
+    padding: 30px 25px;
+    text-decoration: none;
+}
+
+li a:hover{
+    background-color: #F9C638;
+    text-decoration: none;
+    color:white;
+}*/
+
+.lista ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+.lista li{
+    display:inline;
+    float:right;
+
+}
+
+.lista li a{
+    display:block;
+    color:white;
+    text-align: center;
+    padding: 32px 25px;
+    text-decoration: none;
+}
+
+.lista li a:hover{
+    background-color: #F9C638;
+    text-decoration: none;
+    color:white;
+}
+
+.footer{
+    background-color: #681C8B;
+    color:white;
+    font-style: italic;
+    text-align: center;
+    margin-top: 3px;
+}
+
+.sign-up{
+    width:400px;
+    text-align: center;
+    box-shadow: 0 0 3px rgba(0,0,0,0.3);
+    background: #fff;
+    padding: 20px;
+    margin:45px auto 45px;
+    box-shadow: 0 2px 7px rgb(149, 13, 228);
+}
+
+.pozadina{
+    background-image: url(formular5.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.sign-up h1{
+    color: #681C8B;
+    margin-bottom: 30px;
+}
+
+.input-box{
+    border-radius: 20px;
+    padding:8px;
+    margin-bottom: 15px;
+    width:100%;
+    border:2px solid rgb(194, 121, 184);
+}
+
+button{
+    color: white;
+    width:100%;
+    padding:10px;
+    font-size: 15px;
+    margin:10px 0;
+    border:none;
+    outline:none;
+    background-color:  #681C8B;;
+    border-radius: 30px;
+}
+
+.paragraf{
+    font-size: 17px;
+}
+
+textarea{
+    border-radius: 30px;    
+}
+
+.navigacija{
+    margin-top: 5px;
+}

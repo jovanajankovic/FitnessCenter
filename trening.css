@@ -1,0 +1,269 @@
+.header{
+    background-color: #722F83;
+    color:white;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 18px;
+    font-style: normal;
+    font-variant: normal; 
+    font-weight: 100;
+    line-height: 26.4px;
+    margin-bottom: 3px;
+}
+
+.logo{
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif"; 
+    font-size: 30px;
+     font-style: normal; 
+    font-variant: normal; 
+     line-height: 26.4px;
+     padding-top: 15px;
+}
+
+/*ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+li{
+    display:inline;
+    float:right;
+
+}
+
+li a{
+    display:block;
+    color:white;
+    text-align: center;
+    padding: 30px 25px;
+    text-decoration: none;
+}
+
+li a:hover{
+    background-color: #F9C638;
+}*/
+
+.lista ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+.lista li{
+    display:inline;
+    float:right;
+
+}
+
+.lista li a{
+    display:block;
+    color:white;
+    text-align: center;
+    padding: 32px 25px;
+    text-decoration: none;
+}
+
+.lista li a:hover{
+    background-color: #F9C638;
+    text-decoration: none;
+    color:white;
+}
+
+.spusti{
+    background-color: white;
+    padding-top: 30px;
+}
+
+.naslov 
+{ font-family: Bentham;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 26.4px; 
+  color:#8A4EA7;
+  text-align: center;
+}
+
+.podnaslov{
+    color:#350147;
+}
+
+.par{
+    font-family: 'Buenard';
+    font-size: 18px;
+}
+
+.footer{
+    background-color: #681C8B;
+    color:white;
+    font-style: italic;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.dugme{
+    margin-top: 35px;
+    background-color: #681C8B;
+    color:white;
+    border-radius:0px;
+    margin-left:10px;
+}
+
+.dugme1{
+    background-color: #681C8B;
+    color:white;
+    border-radius: 30px;
+    margin-left:0;
+    margin-top: 35px;
+    font-size: 16px;
+    border-radius: 0px;
+}
+
+.dugme2{
+    background-color: #681C8B;
+    color:white;
+    border-radius: 10px;
+    margin-left:0;
+    margin-top: 7px;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+
+.dugme1:hover{
+    color:white;
+}
+
+.dugme:hover{
+    color:white;
+}
+
+
+.paragraf{
+    margin-top: 15px;
+    margin-left:50px;
+    margin-right: 50px;
+    font-family: 'Buenard';
+    font-size: 18px;
+    text-align: justify;
+}
+
+.checked {
+    color: orange;
+  }
+
+  .tezina{
+    font-family: Bentham;
+    font-weight: 700;
+    line-height: 26.4px; 
+    color:#8A4EA7;
+    text-align: center;
+  }
+
+  .trajanje{
+   color: rgb(160, 16, 16);
+    font-family: Bentham;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .navigacija{
+      margin-top: 5px;
+  }
+
+  #vrsta_pilatesa{
+    list-style-type: none;
+    font-size: 25px;
+    font-weight: bold;
+    color:#350147;
+    margin-left: 0px;
+  }
+
+  #vrste{
+    font-size: 27px;
+    font-weight: bold;
+    color:#350147;
+    margin-left: 0px;
+  }
+
+
+  #link{
+      text-decoration: none;
+      color:#350147;
+  }
+
+  .linkovi{
+    text-decoration: none;
+    color:#350147;
+  }
+
+  .linkovi:after{
+    text-decoration: none;
+    color:#350147;
+  }
+
+  .linkovi:hover{
+    text-decoration: none;
+    color:#350147;
+  }
+
+  .kom{
+      margin-bottom: 15px;
+      border-style: hidden;
+      font-size: 25px;
+     padding-left: 10px;
+  }
+
+.menuheader {
+
+    font-family: Forte;
+
+}
+
+
+
+.meni {
+    background-color: #1a3365;
+    color:whitesmoke;
+    
+  
+}
+
+.menielem {
+    color:whitesmoke;
+
+}
+
+.flag {
+    float: right;
+}
+
+p a:hover {
+   
+    background-color: #F9c638;
+    text-decoration: none;
+}
+
+.gallery img{
+    transition :1s;
+}
+
+
+
+.gallery img:hover{
+    transform:scale(1.1);
+}
+
+
+.venoframe { height: 100%; }
+
+.vbox-content { 
+    position: inherit;
+    top: 0; left: 0;
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+    margin-top: 0%;
+    margin-bottom:50%
+}

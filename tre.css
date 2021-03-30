@@ -1,0 +1,145 @@
+.header{
+    background-color: #722F83;
+    color:white;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 18px;
+    font-style: normal;
+    font-variant: normal; 
+    font-weight: 100;
+    line-height: 26.4px;
+    margin-bottom: 3px;
+}
+
+.logo{
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif"; 
+    font-size: 30px;
+     font-style: normal; 
+    font-variant: normal; 
+     line-height: 26.4px;
+     padding-top: 15px;
+}
+
+ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+li{
+    display:inline;
+    float:right;
+}
+
+li a{
+    display:block;
+    color:white;
+    text-align: center;
+    padding: 32px 25px;
+    text-decoration: none;
+}
+
+li a:hover{
+    background-color: #F9C638;
+    text-decoration: none;
+    color:white;
+}
+
+.joga{
+	height:100vh;
+	background-image:url(trening/jo.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.cardio{
+    height:100vh;
+	background-image:url(trening/kard.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.pilates{
+    height:100vh;
+	background-image:url(trening/pil.jpg);
+    background-size:cover;
+    color:white;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.core{
+    height:100vh;
+	background-image:url(trening/z.jpg);
+    background-size:cover;
+    color:white;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.teretana{
+    height:100vh;
+	background-image:url(trening/tere.jpg);
+    background-size:cover;
+    color:black;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.masaza{
+    height:100vh;
+	background-image:url(trening/masaza.jpeg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    color:black;
+    background-position: center center;
+   
+}
+
+.nutricionista{
+    height:100vh;
+	background-image:url(trening/nutricionista3.jpg);
+    background-size:cover;
+    color:black;
+    background-repeat: no-repeat;
+    background-position: center center;
+    
+}
+
+.treninzi{
+    height:100vh;
+	background-image:url(trening/trening4.jpg);
+    background-size:cover;
+    color:black;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.dugme{
+    margin-top:200px;
+    margin-left: 110px;
+}
+
+.klasica{
+ padding-left: 0px;
+ padding-right: 0px;
+}
+
+.naslov{
+	font-size:100px;
+}
+
+.dugmici{
+	border-color:white;
+	border-width:3px;
+}
+
+.footer{
+    background-color: #681C8B;
+    color:white;
+    font-style: italic;
+    text-align: center;
+    margin-top: 5px;
+}

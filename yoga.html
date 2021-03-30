@@ -1,0 +1,222 @@
+<html>
+<head>
+    <title>Yoga</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' href='trening.css'>
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+    <script>
+
+        var yoga = [
+
+            {
+                ime: "Ashtanga Yoga",
+                trajanje: 60,
+                tezina: 5,
+                link: "ashtanga.html"
+            },
+
+            {
+                ime: "Bikram Yoga",
+                trajanje: 60,
+                tezina: 4,
+                link: "bikram.html"
+            },
+
+            {
+                ime: "Hatha Yoga",
+                trajanje: 30,
+                tezina: 2,
+                link: "hatha.html"
+            }
+        ]
+
+        function ucitaj() {
+            document.getElementById("vrste").innerHTML = "<a class=linkovi href=" + yoga[0].link + ">" + yoga[0].ime + "</a>" + "<br>" + "<a class=linkovi href=" + yoga[1].link + ">" + yoga[1].ime + "</a>" + "<br>" + "<a class=linkovi href=" + yoga[2].link + ">" + yoga[2].ime + "</a>";
+        }
+
+        function poImenu() {
+            yoga.sort(function (a, b) {
+                if (a.ime < b.ime) { return -1; }
+                if (a.ime > b.ime) { return 1; }
+                return 0;
+            })
+            document.getElementById("vrste").innerHTML = "<a class=linkovi href=" + yoga[0].link + ">" + yoga[0].ime + "</a>" + "<br>" + "<a class=linkovi href=" + yoga[1].link + ">" + yoga[1].ime + "</a>" + "<br>" + "<a class=linkovi href=" + yoga[2].link + ">" + yoga[2].ime + "</a>";
+        }
+
+        function poTrajanju() {
+            yoga.sort(function (a, b) { return a.trajanje - b.trajanje });
+            document.getElementById("vrste").innerHTML = "<a class=linkovi href=" + yoga[0].link + ">" + yoga[0].ime + "</a>" + " (" + yoga[0].trajanje + "min)" + "<br>" + "<a class=linkovi href=" + yoga[1].link + ">" + yoga[1].ime + "</a>" + " (" + yoga[1].trajanje + "min)" + "<br>" + "<a class=linkovi href=" + yoga[2].link + ">" + yoga[2].ime + "</a>" + " (" + yoga[2].trajanje + "min)";
+        }
+
+        function poTezini() {
+            yoga.sort(function (a, b) { return a.tezina - b.tezina });
+            document.getElementById("vrste").innerHTML = "<a class=linkovi href=" + yoga[0].link + ">" + yoga[0].ime + "</a>" + " (" + yoga[0].tezina + "/5)" + "<br>" + "<a class=linkovi href=" + yoga[1].link + ">" + yoga[1].ime + "</a>" + " (" + yoga[1].tezina + "/5)" + "<br>" + "<a class=linkovi href=" + yoga[2].link + ">" + yoga[2].ime + "</a>" + " (" + yoga[2].tezina + "/5)";
+        }
+
+
+    </script>
+</head>
+
+<body onload="ucitaj()">
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-2 text-left header'>
+                <img src='pob.jpg' height='90px' width='70%'>
+            </div>
+            <div class='col-sm-2 text-left header'>
+                <p class='logo'>Teretana Pobednik</p>
+            </div>
+            <div class='col-sm-8 header lista'>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Početna</a></li>
+                        <li><a href='usluge.html' style="color: yellow;">Usluge</a></li>
+                        <li><a href="Zakazivanje.html">Zakazivanje treninga</a></li>
+                        <li><a href="mojNalog.html">Moj nalog</a></li>
+                        <li><a href="O nama.html">O nama</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-sm-12 navigacija'>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb purple lighten-4">
+                        <li class="breadcrumb-item"><a class="black-text" href="index.html">Pocetna</a></li>
+                        <li class="breadcrumb-item"><a class="black-text" href="trening.html">Treninzi</a></li>
+                        <li class="breadcrumb-item active">Yoga</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <div class='row spusti'>
+            <div class='col-sm-6'>
+                <h1 class='naslov'>Yoga</h1>
+                <br>
+                <p class='par'>
+                    <font color='#722F83'>Yoga (joga)</font> je drevna disciplina koja se razvija hiljadama godina.
+                    U pitanju je opuštajući trening koji će <font color='#722F83'>poboljšati tvoju fleksibilnost</font>
+                    i
+                    <font color='#722F83'> eliminisati stres.</font>
+                    Cilj Yoge je da salu napustiš uz širok osmeh, nakon što ostvariš <font color='#722F83'>jedinstvo
+                        tela, srca i uma. </font>
+                    Deo ovog treninga su i vežbe istezanja i relaksacija.
+                </p>
+                <h3 class='podnaslov'>Kome je namenjena?</h3>
+                <p class='par'>
+                    Yoga je trening <font color='#722F83'>pogodan za sve</font> – nije bitno da li biraš Yogu da bi
+                    eliminisao stres,
+                    poboljšao fleksibilnost ili poboljšao snagu tela! Nije važno da li si početnik, sportista,
+                    rekreativac ili samo želiš da eliminišeš stres
+                </p>
+                <br>
+                <p id='vrste'></p>
+                <button class='btn dugme' onclick='poImenu()'>Sortiraj po imenu</button>
+                <button class='btn dugme' onclick='poTrajanju()'>Sortiraj po trajanju</button>
+                <button class='btn dugme' onclick='poTezini()'>Sortiraj po nivou tezine</button>
+            </div>
+            <div class='col-sm-6 text-center'>
+                <div>
+                    <img src='yoga/ubaci3.jpg' width='460' height='300'>
+                </div>
+                <br>
+                <div>
+                    <img src='yoga/ubaci4.jpg' width='460' height='300'>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-sm-12 meni'>
+                <h3 class='menuheader'>
+                    Procitajte jos
+                </h3>
+            </div>
+        </div>
+
+        <div class='row meni'>
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Usluge
+                </h4>
+                <p>
+                    <a href="trening.html" class='menielem'>Treninzi </a>&nbsp;&nbsp;
+                    <i class="em em-muscle" aria-role="presentation" aria-label="FLEXED BICEPS"></i>
+                    <br />
+                    <a href="nutricionista.html" class='menielem'>Nutricionista</a>
+                    &nbsp;&nbsp;
+                    <i class="em em-banana" aria-role="presentation" aria-label="BANANA"></i>
+                    <br />
+                    <a href="masaza.html" class='menielem'>Masaze</a>&nbsp;&nbsp;
+                    <i class="em em-massage" aria-role="presentation" aria-label="FACE MASSAGE"></i>
+                </p>
+                <br />
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Zaposleni
+                </h4>
+                <p>
+                    <a href="Filip.html" class='menielem'>Filip </a>
+                    <i class="em em-man-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="Vanja.html" class='menielem'>Vanja</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="Vukasin.html" class='menielem'>Vukasin</a>
+                    <i class="em em-weight_lifter" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="Zvezdana.html" class='menielem'>Zvezdana</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                </p>
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Raspored
+                </h4>
+                <p>
+                    <a href="Zakazivanje.html" class='menielem'>Kompletan raspored</a>
+                    <i class="em em-calendar" aria-role="presentation" aria-label="TEAR-OFF CALENDAR"></i>
+                </p>
+            </div>
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Moj Nalog
+                </h4>
+                <p>
+                    <a href="mojNalog.html" class='menielem'>Nalog</a>
+                    <i class="em em-male-technologist" aria-role="presentation" aria-label=""></i>
+                    <br />
+                <h4 class='menuheader'>
+                    Jezici/Languages
+                </h4>
+                <div style="font-size: 10px;">
+                    <p>
+                        <a href="yogaENG.html"> <img src="jack.png" alt="" height="15" width="30"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="yoga.html"><img src="srbija.png" alt="" height="15" width="30"></a>
+                        <br />
+                        <a style="text-decoration: none; color: white;" href="yogaENG.html">engleski</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a style="text-decoration: none; color: white;" href="yoga.html">srpski</a>
+                    </p>
+                </div>
+                </p>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12 footer'>
+                „Copyright 2020, Јована Јанковић, Филип Лучић, Одсек за софтверско инжењерство Електротехничког
+                факултета
+                Универзитета у Београду"
+            </div>
+        </div>
+    </div>
+</body>
+</html>

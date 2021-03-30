@@ -1,0 +1,197 @@
+.header{
+    background-color: #722F83;
+    color:white;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 18px;
+    font-style: normal;
+    font-variant: normal; 
+    font-weight: 100;
+    line-height: 26.4px;
+    margin-bottom: 3px;
+}
+
+.logo{
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif"; 
+    font-size: 30px;
+     font-style: normal; 
+    font-variant: normal; 
+     line-height: 26.4px;
+     padding-top: 15px;
+}
+
+
+h1{
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+}
+
+h1:after{
+    content:'';
+    background: black;
+    display:block;
+    height:3px;
+    width:200px;
+    margin:15px auto;
+}
+
+
+.lista ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+.lista li{
+    display:inline;
+    float:right;
+
+}
+
+.lista li a{
+    display:block;
+    color:white;
+    text-align: center;
+    padding: 32px 25px;
+    text-decoration: none;
+}
+
+.lista li a:hover{
+    background-color: #F9C638;
+    text-decoration: none;
+    color:white;
+}
+
+.price-table{
+    padding:20px 0;
+
+}
+
+.single-price{
+    margin:10px auto;
+    display:inline;
+    float:left;
+    width:100%;
+    background-color: #efefef;
+    transition:0.5s;
+}
+
+.single-price:hover{
+    box-shadow: 0 2px 50px rgb(149, 13, 228);
+}
+
+.price-head{
+    background-color:#722F83;
+    display:inline;
+    float:left;
+    padding:10px 5px;
+    text-align: center;
+    width:100%;
+}
+
+.price-head h2{
+    color:#fff;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+.ulancana ul li{
+    border-bottom: 1px solid #fff;
+    padding: 12px 5px;
+    list-style:none;
+}
+
+.price-head p{
+    color:#ccc;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.price-content{
+    display:inline;
+    float:left;
+    width:100%;
+    padding:0 15px;
+}
+
+
+
+.price-buttom{
+    text-align: center;
+    padding:15px 15px 30px;
+}
+
+
+.buy-btn{
+    background-color: #2196f3;
+    border-radius: 10px;
+    color:#fff;
+    display:inline-block;
+    font-size:18px;
+    padding:15px 50px;
+    transition: all 0.5s;
+}
+
+.buy-btn:hover{
+    border-color: 1px solid #fff;
+    background-color: #3f51bf;
+}
+
+.price-buttom a{
+    text-decoration: none;
+    color:#fff;
+}
+
+.fa-check-circle{
+    color:green;
+    padding:10px;
+}
+
+.navigacija{
+    margin-top: 5px;
+}
+
+.footer{
+    background-color: #681C8B;
+    color:white;
+    font-style: italic;
+    text-align: center;
+    margin-top: 5px;
+}
+
+
+
+
+
+
+
+.menuheader {
+
+    font-family: Forte;
+
+}
+
+
+
+.meni {
+    background-color: #1a3365;
+    color:whitesmoke;
+    
+  
+}
+
+.menielem {
+    color:whitesmoke;
+
+}
+
+p a:hover {
+   
+    background-color: #F9c638;
+    text-decoration: none;
+}

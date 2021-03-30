@@ -1,0 +1,397 @@
+
+*{
+	padding:0;
+	margin:0;
+}
+
+body{
+	background : #efefef;
+	font-family:sans-serif;
+}
+
+.profile-box{
+	width:260px;
+	height:260px;
+	background:#fff;
+	border-radius:4px;
+	margin-bottom:30px;
+	box-shadow:0 20px 20px 20px rgba(115,193,255,0.1);
+	padding:20px;
+	position:relative;
+	transition:background 0.5s;
+}
+
+.profile-box img{
+	width:100px;
+	position:absolute;
+	top:20px;
+	right:20px;
+	bottom:20px;
+	border-radius:4px;	
+	transition:0.5s;
+}
+
+.profile-box h4{
+	margin-top:24px;
+	margin-bottom:5px;
+	color:purple;
+}
+
+.team-row{
+	display:flex;
+	justify-content:space-between;
+	flex-wrap:wrap;
+	width:100%;
+	margin:auto;
+}
+
+.profile-box img:hover{
+	width:220px;
+}
+
+.profile-box:hover{
+	background:purple;
+}
+
+.profile-box:hover h4{
+	color:#fff;
+}
+
+.profile-box:hover p{
+	color:#fff;
+}
+.profile-box:hover small{
+	color:#fff;
+}
+
+.header{
+    background-color: #722F83;
+    color:white;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 18px;
+    font-style: normal;
+    font-variant: normal; 
+    font-weight: 100;
+    line-height: 26.4px;
+  
+    margin-bottom: 3px;
+}
+
+.tekst{
+    padding-right: 25px;
+}
+
+.ljub{
+    color:#681C8B;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 24px;
+}
+
+
+.tim{
+    background-color: #722F83;
+    color:white;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    text-align: center;
+    height:62px;
+    padding-top: 7px;
+    margin-bottom: 3px;
+    }
+
+.slikaispod{
+    background-color: #722F83;
+    color:white;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size:20px;
+    font-style: normal;
+    font-variant: normal; 
+    font-weight: 100;
+    line-height: 26.4px;
+    margin-bottom: 3px;
+    height:100px;
+    text-align: center;
+    padding-top: 13px;
+    
+}
+
+/*ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+li{
+    display:inline;
+    float:right;
+
+}
+
+li a{
+    display:block;
+    color:white;
+    text-align: center;
+    padding: 30px 25px;
+    text-decoration: none;
+}
+
+li a:hover{
+    background-color: #F9C638;
+    text-decoration: none;
+    color:white;
+}*/
+
+.lista ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+.lista li{
+    display:inline;
+    float:right;
+
+}
+
+.lista li a{
+    display:block;
+    color:white;
+    text-align: center;
+    padding: 32px 25px;
+    text-decoration: none;
+}
+
+.lista li a:hover{
+    background-color: #F9C638;
+    text-decoration: none;
+    color:white;
+}
+
+
+
+.slika{
+   color:#681C8B;
+   font-size: 20px;
+    float:right;
+    padding: 0px;
+    margin-bottom: 3px;
+    background-image: url(1245139.jpg);
+    background-size: cover;
+    height: 500px;
+}
+
+.logo{
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif"; 
+    font-size: 30px;
+     font-style: normal; 
+    font-variant: normal; 
+     line-height: 26.4px;
+     padding-top: 15px;
+}
+
+
+.drugi{
+    background-color:rgb(190, 181, 181);
+   
+    padding:17px;
+    padding-top: 23px;
+}
+
+.okvir{
+    background-color:  #F9C638;
+    color:  #722F83;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 18px;
+    font-style: normal;
+    font-variant: normal; 
+    font-weight: 100;
+    line-height: 26.4px;
+    margin-bottom: 3px;
+    border-color: white;
+    border-style: solid;
+
+}
+
+.dugmici{
+    background-color: #BEAEE4;
+    color: #681C8B;
+    text-align: center;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 18px;
+    border-color: white;
+    border-width: 2px;
+    transition: 2s;
+}
+
+.dugmici:hover{
+    height: 50px;
+    width:130px;
+}
+
+.borderslika{
+    border-style: solid;
+    border-color:rgb(168, 82, 238);
+}
+
+.dr{
+    padding-bottom: 15px;
+    margin-bottom: 5px;
+}
+
+.zena{
+padding: 0px;
+margin-bottom: 3px;
+margin-top: 5px;
+background-image: url(fitness.jpg);
+background-size: cover;
+height: 550px;
+}
+
+.container{
+    position: relative;
+}
+
+.text-block{
+    position: absolute;
+    background-color: purple;
+    color: white;
+    bottom: 20px;
+    right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.strucnjaci{
+    background-image: url(zid.jpg);
+    background-size: cover;
+    padding-top: 20px;
+}
+
+.pitanja{
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 25px;
+    font-style: normal;
+    font-variant: normal; 
+    font-weight: 100;
+    line-height: 26.4px;
+    margin-bottom: 3px;
+}
+
+.ime{
+    padding-top: 10px;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 20px;
+}
+
+.footer{
+    background-color: #681C8B;
+    color:white;
+    font-style: italic;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.ljubicasto{
+    background-color: #BEAEE4;
+    text-align: center;
+    height:150px;
+    padding:45px;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 30px;
+    border-color: white;
+    border-style: solid;
+    border-width: 5px;
+    margin:auto;
+}
+
+.dugme{
+    padding-right: 30px;
+}
+
+.providno{
+    opacity: 0.75;
+}
+
+.providno:hover{
+    opacity: 1.0;
+}
+
+.inner{
+    overflow:hidden;
+}
+.inner img{
+    transition: all 1.0s;
+}
+
+.inner:hover img{
+    transform:scale(1.5);
+}
+
+.card{
+    box-shadow: 0 2px 7px rgb(149, 13, 228);
+}
+
+.ocena{
+    font-weight: bold;
+    color: #681C8B;
+    font-size: 20px;
+}
+
+.trening_naslov{
+    color:white;
+    font-weight: bold;
+    border-width: 3px;
+    border-color: indigo;
+}
+
+.kartica{
+    background-color:	rgb(192, 139, 192);
+}
+
+.opis{
+    color:white;
+    font-size:15px;
+}
+
+.link_trening{
+   color: #681C8B;
+}
+
+.link_trening:hover{
+    color: #681C8B;
+    text-decoration: none;
+}
+
+.najbolje_naslov{
+    color: #681C8B;
+}
+
+
+
+
+.menuheader {
+
+    font-family: Forte;
+
+}
+
+
+
+.meni {
+    background-color: #1a3365;
+    color:whitesmoke;
+    
+  
+}
+
+.menielem {
+    color:whitesmoke;
+
+}
+
+p a:hover {
+   
+    background-color: #F9c638;
+    text-decoration: none;
+}

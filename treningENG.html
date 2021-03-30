@@ -1,0 +1,134 @@
+<html>
+<head>
+    <title>Training</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='tre.css'>
+    <script>
+        function yoga() {
+            window.open('yogaENG.html');
+        }
+        function pilates() {
+            window.open('pilatesENG.html');
+        }
+        function core() {
+            window.open('coreENG.html');
+        }
+        function cardio() {
+            window.open('cardioENG.html');
+        }
+        function teretana() {
+            window.open('teretanaENG.html');
+        }
+        var korisnici;
+        function ucitaj() {
+
+        }
+    </script>
+</head>
+<body onload='ucitaj()'>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-2 text-left header'>
+                <img src='pob.jpg' height='90px' width='70%'>
+            </div>
+            <div class='col-sm-2 text-left header'>
+                <p class='logo'>Teretana Pobednik</p>
+            </div>
+            <div class='col-sm-8 header'>
+                <nav>
+                    <ul>
+                        <li><a href="indexENG.html">Home</a></li>
+                        <li><a href='uslugeENG.html' style="color: yellow;">Services</a></li>
+                        <li><a href="ZakazivanjeENG.html">Appointments</a></li>
+                        <li><a href="mojNalogENG.html">My Account</a></li>
+                        <li><a href="About.html">About us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class='container klasica'>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active joga">
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col-sm-12 text-left dugme'>
+                            <h1 class='naslov'>Yoga</h1>
+                            <button class='btn btn-success btn-lg dugmici' onclick='yoga()'>Learn more</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item cardio">
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col-sm-12 text-left dugme'>
+                            <h1 class='naslov'>Cardio</h1>
+                            <button class='btn btn-success btn-lg dugmici' onclick='cardio()'>Learn more</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item pilates">
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col-sm-12 text-left dugme'>
+                            <h1 class='naslov'>Pilates</h1>
+                            <button class='btn btn-success btn-lg dugmici' onclick='pilates()'>Learn more</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item core">
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col-sm-12 text-left dugme'>
+                            <h1 class='naslov'>Core</h1>
+                            &nbsp; <button class='btn btn-success btn-lg dugmici' onclick='core()'>Learn more</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item teretana">
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col-sm-12 text-left dugme'>
+                            <h1 class='naslov'>Gym</h1>
+                            &nbsp; <button class='btn btn-success btn-lg dugmici' onclick='teretana()'>Learn
+                                more</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-12 footer'>
+                „Copyright 2020, Јована Јанковић, Филип Лучић, Одсек за софтверско инжењерство Електротехничког факултета
+                Универзитета у Београду"
+            </div>
+        </div>
+    </div>
+</body>
+</html>

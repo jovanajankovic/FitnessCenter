@@ -1,0 +1,1602 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Zakazivanje termina</title>
+   
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' href='zakazivanje.css'>
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+    <script>
+
+        function openMenu(input) {
+            if(input.id=="cardio") {
+           
+                let prikaz=document.getElementById("prikaz");
+                prikaz.innerHTML="<br><h3>Cardio programs we offer are: </h3> <br/>"+
+                "<h4 style = 'display:inline;'>Cardio training of low intensity</h4> <button id='cardio1' type='button' class='btn btn-success' style='float:right' onclick='showSchedule(this)'>Pogledajte termine</button><br/><br/>"+
+                
+                
+                " <h4 style = 'display:inline;'>Cardio training of medium intensity</h4> <button id='cardio2' type='button' class='btn btn-success' style='float:right' onclick='showSchedule(this)'>Pogledajte termine</button><br/><br/>"+
+                
+                
+                
+                "  <h4  style = 'display:inline;'>Cardio training of high intensity</h4> <button id='cardio3' type='button' class='btn btn-success' style='float:right' onclick='showSchedule(this)'>Pogledajte termine</button><br/><br/>";            
+  
+            }
+            if(input.id=="core") {
+                let prikaz=document.getElementById("prikaz");
+                prikaz.innerHTML="<br><h3>Core programs we offer are: </h3> <br/>"+
+                "<h4 style = 'display:inline;'>Beginners' level</h4> <button id='core1' type='button' class='btn btn-success' style='float:right' onclick='showSchedule(this)'>Pogledajte termine</button><br/><br/>"+
+                
+                
+                " <h4 style = 'display:inline;'>Medium level</h4> <button id='core2' type='button' class='btn btn-success' style='float:right' onclick='showSchedule(this)'>Pogledajte termine</button><br/><br/>"+
+                
+                
+                
+                "  <h4  style = 'display:inline;'>High level</h4> <button id='core3' type='button' class='btn btn-success' style='float:right' onclick='showSchedule(this)'>Pogledajte termine</button><br/><br/>";            
+            }
+            if(input.id=="pilates") {
+                let prikaz=document.getElementById("prikaz");
+                prikaz.innerHTML="<br><h3>Types of Pilates we offer: </h3> <br/>"+
+                "<h4 style = 'display:inline;'>Classic pilates</h4> <button id='klasicni' type='button' class='btn btn-success' style='float:right' onclick='showSchedule(this)'>Pogledajte termine</button><br/><br/>"+
+                
+                
+                " <h4 style = 'display:inline;'>Reformer pilates</h4> <button id='reformer' type='button' class='btn btn-success' style='float:right' onclick='showSchedule(this)'>Pogledajte termine</button><br/><br/>"+
+                
+                
+                
+                "  <h4  style = 'display:inline;'>Stott pilates</h4> <button id='stot' type='button' class='btn btn-success' style='float:right' onclick='showSchedule(this)'>Pogledajte termine</button><br/><br/>";            
+  
+
+            }
+            if(input.id=="yoga") {
+                let prikaz=document.getElementById("prikaz");
+                prikaz.innerHTML="<br><h3>Types of Yoga we offer: </h3> <br/>"+
+                "<h4 style = 'display:inline;'>Ashtanga yoga</h4> <button id='ashtanga' type='button' class='btn btn-success' style='float:right' onclick='showSchedule(this)'>Pogledajte termine</button><br/><br/>"+
+                
+                
+                " <h4 style = 'display:inline;'>Bikram Yoga</h4> <button id='bikram' type='button' class='btn btn-success' style='float:right' onclick='showSchedule(this)'>Pogledajte termine</button><br/><br/>"+
+                
+                
+                
+                "  <h4  style = 'display:inline;'>Hatha Yoga</h4> <button id='hatha' type='button' class='btn btn-success' style='float:right' onclick='showSchedule(this)'>Pogledajte termine</button><br/><br/>";            
+  
+            }
+
+        }
+
+
+        function showSchedule (input) {
+
+         
+
+            if(input.id=="cardio1") {
+
+                var x=localStorage.getItem("cardio1t1cnt");            
+                var prikaz=document.getElementById("prikaz");
+
+                
+                if(parseInt(x)>0) { 
+                    var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["cardio1t1"]) {
+                        prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Monday</h3>"+
+                "<p>09:00</p>"+"Available spaces: "+x+ "<br/> <button id='cardio1t1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>";
+                            
+                    }
+
+                    else
+                   
+                    prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Monday</h3>"+
+                "<p>09:00</p>"+"Available spaces: "+x+"<br/><button id='cardio1t1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button>"+
+                "<br><button id='cardio1t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div></div>";
+                    
+                }              
+                else  {
+                    var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["cardio1t1"]) {
+                        prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Monday</h3> <p>09:00</p> Available spaces: "+x+"</div> </div> ";
+                    }
+                    else 
+                    prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Monday</h3> <p>09:00</p> Available spaces: "+x+
+                    "<br><button id='cardio1t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div> ";
+                }
+               
+              
+            }
+
+            if(input.id=="cardio2") {
+
+
+                var x=localStorage.getItem("cardio2t1cnt");            
+                var prikaz=document.getElementById("prikaz");
+
+                if(parseInt(x)>0) { var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["cardio2t1"]) {
+                        prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Thursday</h3>"+
+                "<p>09:00</p>"+"Available spaces: "+x+ "<br/> <button id='cardio2t1' type='button' class='btn btn-success' onclick='Reserve(this)' style='width:55px'>Reserve</button> </div> </div>";
+            
+                    }
+
+                    else
+                   
+                    prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Thursday</h3>"+
+                "<p>09:00</p>"+"Available spaces: "+x+"<br/><button id='cardio2t1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button>"+
+                "<br><button id='cardio2t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div></div>";
+                    
+                }              
+                else  {
+                    var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["cardio2t1"]) {
+                        prikaz.innerHTML="<div class='row'>  <div class='col-sm-6 text-center'><h3>Thursday</h3> <p>09:00</p> Available spaces: "+x+"</div> </div> ";
+                    }
+                    else 
+                    prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Thursday</h3> <p>09:00</p> Available spaces: "+x+
+                    "<br><button id='cardio2t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div> ";
+
+                }
+                
+                
+                
+
+            }
+
+            if(input.id=="cardio3") {
+
+
+                var x=localStorage.getItem("cardio3t1cnt");            
+                var prikaz=document.getElementById("prikaz");
+                
+                if(parseInt(x)>0) { var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["cardio3t1"]) {
+                        prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Friday</h3>"+
+                "<p>09:00</p>"+"Available spaces: "+x+ "<br/> <button id='cardio3t1' type='button' class='btn btn-success' onclick='Reserve(this)' style='width:55px'>Reserve</button> </div> </div>";
+            
+                    }
+
+                    else
+                   
+                    prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Friday</h3>"+
+                "<p>09:00</p>"+"Available spaces: "+x+"<br/><button id='cardio3t1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button>"+
+                "<br><button id='cardio3t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div> </div>";
+                    
+                }              
+                else {
+                    var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["cardio3t1"])
+                        prikaz.innerHTML="<div class='row'>  <div class='col-sm-6 text-center'><h3>Friday</h3> <p>09:00</p> Available spaces: "+x+"</div> </div> ";
+                    else 
+                        prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Friday</h3> <p>09:00</p> Available spaces: "+x+
+                        "<br><button id='cardio3t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div></div>";
+                } 
+                
+                
+
+
+
+            }
+
+            if(input.id=="core1") {
+
+
+            
+                var x=localStorage.getItem("core1t1cnt");
+                var prikaz=document.getElementById("prikaz");
+
+                
+                if(parseInt(x)>0) { var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["core1t1"]) {
+                        prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Monday</h3>"+
+                "<p>12:00</p>"+"Available spaces: "+x+ "<br/> <button id='core1t1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>";
+            
+                    }
+
+                    else
+                   
+                    prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Monday</h3>"+
+                "<p>12:00</p>"+"Available spaces: "+x+"<br/><button id='core1t1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button>"+
+                "<br><button id='core1t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div> </div>";
+                    
+                }              
+                else {
+                    var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["core1t1"])
+                        prikaz.innerHTML="<div class='row'>  <div class='col-sm-6 text-center'><h3>Monday</h3> <p>12:00</p> Available spaces: "+x+"</div> </div> ";
+                    else 
+                        prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Monday</h3> <p>12:00</p> Available spaces: "+x+
+                        "<br><button id='core1t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div> ";
+                }  
+               
+            }
+
+            if(input.id=="core2") {
+
+                var x=localStorage.getItem("core2t1cnt");            
+                var prikaz=document.getElementById("prikaz");
+
+
+
+
+                if(parseInt(x)>0) { var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["core2t1"]) {
+                        prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Tuesday</h3>"+
+                "<p>12:00</p>"+"Available spaces: "+x+ "<br/> <button id='core2t1' type='button' class='btn btn-success' onclick='Reserve(this)' style='width:55px'>Reserve</button> </div> </div>";
+            
+                    }
+
+                    else
+                   
+                    prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Tuesday</h3>"+
+                "<p>12:00</p>"+"Available spaces: "+x+"<br/><button id='core2t1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button>"+
+                "<br><button id='core2t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div> </div>";
+                    
+                }              
+                else {
+                    var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["core2t1"])
+                        prikaz.innerHTML="<div class='row'>  <div class='col-sm-6 text-center'><h3>Tuesday</h3> <p>12:00</p> Available spaces: "+x+"</div> </div> ";
+                    else 
+                        prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Tuesday</h3> <p>12:00</p> Available spaces: "+x+
+                        "<br><button id='core2t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div> ";
+                }
+                
+            
+            }
+
+
+
+
+            if(input.id=="core3") {
+
+
+                var core3t1cnt=localStorage.getItem("core3t1cnt");            
+                var prikaz=document.getElementById("prikaz");
+                let x = core3t1cnt;
+
+
+
+
+                
+                if(parseInt(core3t1cnt)>0) { var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["core3t1"]) {
+                        prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Tuesday</h3>"+
+                "<p>19:00</p>"+"Available spaces: "+core3t1cnt+ "<br/> <button id='core3t1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>";
+            
+                    }
+
+                    else
+                   
+                    prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Tuesday</h3>"+
+                "<p>19:00</p>"+"Available spaces: "+core3t1cnt+"<br/><button id='core3t1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px;'>Reserve</button>"+
+                "<br><button id='core3t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div> </div>";
+                    
+                }              
+                else  { var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["core3t1"])
+                    prikaz.innerHTML="<div class='row'>  <div class='col-sm-6 text-center'><h3>Tuesday</h3> <p>19:00</p> Available spaces: "+core3t1cnt+"</div> </div> ";
+                    else 
+                    prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Tuesday</h3> <p>19:00</p> Available spaces: "+x+
+                    "<br><button id='core3t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div> ";
+
+                }
+               
+            }
+
+
+            if(input.id=="klasicni") {
+
+                var x=localStorage.getItem("klasicnit1cnt");            
+                var prikaz=document.getElementById("prikaz");
+
+
+                
+                if(parseInt(x)>0) { var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["klasicnit1"]) {
+                        prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Saturday</h3>"+
+                "<p>21:00</p>"+"Available spaces: "+x+ "<br/> <button id='klasicnit1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>";
+            
+                    }
+
+                    else
+                   
+                    prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Saturday</h3>"+
+                "<p>21:00</p>"+"Available spaces: "+x+"<br/><button id='klasicnit1' type='button' class='btn btn-danger' onclick='Reserve(this)' style = 'width:55px'>Reserve</button>"+
+                "<br><button id='klasicnit1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div>";
+                    
+                }              
+                else {
+                    var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["klasicnit1"])
+                    prikaz.innerHTML="<div class='row'>  <div class='col-sm-6 text-center'><h3>Saturday</h3> <p>21:00</p> Available spaces: "+x+"</div> </div> ";
+                    else 
+                    prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Saturday</h3> <p>21:00</p> Available spaces: "+x+
+                    "<br><button id='klasicnit1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div> ";
+                }
+                
+
+
+        
+
+
+            }
+
+
+
+             if(input.id=="reformer") {
+
+                var x=localStorage.getItem("reformert1cnt");            
+                var prikaz=document.getElementById("prikaz");
+
+                
+                
+                if(parseInt(x)>0) {var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["reformert1"]) {
+                        prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Saturday</h3>"+
+                "<p>18:00</p>"+"Available spaces: "+x+ "<br/> <button id='reformert1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>";
+            
+                    }
+
+                    else
+                   
+                    prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Saturday</h3>"+
+                "<p>18:00</p>"+"Available spaces: "+x+"<br/><button id='reformert1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button>"+
+                "<br><button id='reformert1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div> </div>";
+                    
+                }              
+                else  {
+                    var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["reformert1"])
+                    prikaz.innerHTML="<div class='row'>  <div class='col-sm-6 text-center'><h3>Saturday</h3> <p>18:00</p> Available spaces: "+x+"</div> </div> ";
+                    else 
+                    prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Saturday</h3> <p>18:00</p> Available spaces: "+x+
+                    "<br><button id='reformert1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div> ";
+
+                }
+               
+
+
+
+          
+            }
+
+
+
+
+            if(input.id=="stot") {
+
+                var x=localStorage.getItem("stott1cnt");            
+                var prikaz=document.getElementById("prikaz");
+
+                
+                
+                if(parseInt(x)>0) { var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["stott1"]) {
+                        prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Wednesday</h3>"+
+                "<p>19:00</p>"+"Available spaces: "+x+ "<br/> <button id='stott1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>";
+            
+                    }
+
+                    else
+                   
+                    prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Wednesday</h3>"+
+                "<p>19:00</p>"+"Available spaces: "+x+"<br/><button id='stott1' type='button' class='btn btn-danger' onclick='Reserve(this)' style = 'width:55px'>Reserve</button>"+
+                "<br><button id='stott1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div>";
+                    
+                }              
+                else {
+                    var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["stott1"])
+                    prikaz.innerHTML="<div class='row'>  <div class='col-sm-6 text-center'><h3>Wednesday</h3> <p>19:00</p> Available spaces: "+x+"</div> </div> ";
+                    else 
+                    prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Wednesday</h3> <p>19:00</p> Available spaces: "+x+
+                    "<br><button id='stott1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div> ";
+                } 
+                 
+
+
+
+            }
+
+
+            if(input.id=="ashtanga") {
+
+                var x=localStorage.getItem("ashtangat1cnt");            
+                var prikaz=document.getElementById("prikaz");
+
+
+                
+                
+                if(parseInt(x)>0) { var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["ashtangat1"]) {
+                        prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Friday</h3>"+
+                "<p>20:00</p>"+"Available spaces: "+x+ "<br/> <button id='ashtangat1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>";
+            
+                    }
+
+                    else
+                   
+                    prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Friday</h3>"+
+                "<p>20:00</p>"+"Available spaces: "+x+"<br/><button id='ashtangat1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button>"+
+                "<br><button id='ashtangat1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div> </div>";
+                    
+                }              
+                else  {
+                    var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["ashtangat1"])
+                    prikaz.innerHTML="<div class='row'>  <div class='col-sm-6 text-center'><h3>Friday</h3> <p>20:00</p> Available spaces: "+x+"</div> </div> ";
+                    else
+                    prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Friday</h3> <p>20:00</p> Available spaces: "+x+
+                    "<br><button id='ashtangat1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div> ";
+                }
+
+
+
+            }
+
+            if(input.id=="bikram") {
+                var x=localStorage.getItem("bikramt1cnt");            
+                var prikaz=document.getElementById("prikaz");
+
+                
+                
+                if(parseInt(x)>0) { var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["bikramt1"]) {
+                        prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Thursday</h3>"+
+                "<p>20:00</p>"+"Available spaces: "+x+ "<br/> <button id='bikramt1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>";
+            
+                    }
+
+                    else
+                   
+                    prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Thursday</h3>"+
+                "<p>20:00</p>"+"Available spaces: "+x+"<br/><button id='bikramt1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button>"+
+                "<br><button id='bikramt1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div> </div>";
+                    
+                }              
+                else {
+                    var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["bikramt1"])
+                    prikaz.innerHTML="<div class='row'>  <div class='col-sm-6 text-center'><h3>Thursday</h3> <p>20:00</p> Available spaces: "+x+"</div> </div> ";
+                    else 
+                    prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Thursday</h3> <p>20:00</p> Available spaces: "+x+
+                    "<br><button id='bikramt1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div> ";
+                }  
+
+
+            }
+
+
+            if(input.id=="hatha") {
+
+                var x=localStorage.getItem("hathat1cnt");            
+                var prikaz=document.getElementById("prikaz");
+                
+                
+                if(parseInt(x)>0) { var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["hathat1"]) {
+                        prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Wednesday</h3>"+
+                "<p>21:00</p>"+"Available spaces: "+x+ "<br/> <button id='hathat1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>";
+            
+                    }
+
+                    else
+                   
+                    prikaz.innerHTML= "<div class='row'>  <div class='col-sm-6 text-center'><h3>Wednesday</h3>"+
+                "<p>21:00</p>"+"Available spaces: "+x+"<br/><button id='hathat1' type='button' class='btn btn-danger' onclick='Reserve(this)' style = 'width:55px'>Reserve</button>"+
+                "<br><button id='hathat1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div> </div>";
+                    
+                }              
+                else {
+                    var y=JSON.parse(localStorage.getItem("korisnik"));
+                    if(!y.treninzi["hathat1"])
+                    prikaz.innerHTML="<div class='row'>  <div class='col-sm-6 text-center'><h3>Wednesday</h3> <p>21:00</p> Available spaces: "+x+"</div> </div> ";
+                    else
+                    prikaz.innerHTML="<div class='row'><div class='col-sm-6 text-center'><h3>Wednesday</h3> <p>21:00</p> Available spaces: "+x+
+                    "<br><button id='cardio1t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div> </div> ";
+                } 
+
+
+
+            }
+
+    }
+
+    var ime;
+    var prezime;
+    var korisnik;
+   
+
+    function Load() {
+
+     //   ime: "Filip";
+      //  prezime:"Lucic";
+      //  localStorage.setItem("ime",ime);
+       // localStorage.setItem("prezime",prezime);
+
+       //dodato za korisnika iz localStorage koji se pamti u index.html
+       korisnik=localStorage.getItem("korisnik");
+       korisnik=JSON.parse(korisnik);
+        
+    //    var flag=localStorage.getItem("flag");
+      //  if(flag==null) { 
+      /*  korisnik={
+        "ime":"Filip",
+        "prezime":"Lucic",
+        "treninzi":{
+            "core1t1":false,
+            "core2t1":false,
+            "core3t1":false,
+            "cardio1t1":false,
+            "cardio2t1":false,
+            "cardio3t1":false,
+            "klasicnit1":false,
+            "reformert1":false,
+            "stott1":false,
+            "ashtangat1":false,
+            "bikramt1":false,
+            "hathat1":false            
+
+        }*/
+//    };
+      /*  if(localStorage.getItem('korisnik')==null) {
+
+          
+            localStorage.setItem('korisnik', JSON.stringify(korisnik));
+
+        }
+       
+        localStorage.setItem("flag",1);
+        }*/
+        
+        var core1t1cnt =  localStorage.getItem("core1t1cnt");
+        if(core1t1cnt==null){
+        localStorage.setItem('core1t1cnt',"30");
+        }
+        var core2t1cnt = localStorage.getItem('core2t1cnt');
+        if(core2t1cnt==null){
+        localStorage.setItem('core2t1cnt',"30");
+        }
+        var core3t1cnt = localStorage.getItem('core3t1cnt');
+        if(core3t1cnt==null){
+        localStorage.setItem('core3t1cnt',"30");
+        }
+        var cardio1t1cnt = localStorage.getItem('cardio1t1cnt');
+        if(cardio1t1cnt==null){
+        localStorage.setItem('cardio1t1cnt',"30");
+        }
+        var cardio2t1cnt = localStorage.getItem('cardio2t1cnt');
+        if(cardio2t1cnt==null){
+        localStorage.setItem('cardio2t1cnt',"30");
+        }
+        var cardio3t1cnt = localStorage.getItem('cardio3t1cnt');
+        if(cardio3t1cnt==null){
+        localStorage.setItem('cardio3t1cnt',"30");
+        }
+        var klasicnit1cnt = localStorage.getItem('klasicnit1cnt');
+        if(klasicnit1cnt==null){
+        localStorage.setItem('klasicnit1cnt',"30");
+        }
+        var reformert1cnt = localStorage.getItem('reformert1cnt');
+        if(reformert1cnt==null){
+        localStorage.setItem('reformert1cnt',"30");
+        }
+        var stott1cnt = localStorage.getItem('stott1cnt');
+        if(stott1cnt==null){
+        localStorage.setItem('stott1cnt',"30");
+        }
+        var ashtangat1cnt = localStorage.getItem('ashtangat1cnt');
+        if(ashtangat1cnt==null){
+        localStorage.setItem('ashtangat1cnt',"30");
+        }
+        var bikramt1cnt = localStorage.getItem('bikramt1cnt');
+        if(bikramt1cnt==null){
+        localStorage.setItem('bikramt1cnt',"30");
+        }
+        var hathat1cnt = localStorage.getItem('hathat1cnt');
+        if(hathat1cnt==null){
+        localStorage.setItem('hathat1cnt',"30");
+        }
+        var core1t2cnt =  localStorage.getItem("core1t2cnt");
+        if(core1t2cnt==null){
+        localStorage.setItem('core1t2cnt',"30");
+        }
+        var core2t2cnt = localStorage.getItem('core2t2cnt');
+        if(core2t2cnt==null){
+        localStorage.setItem('core2t2cnt',"30");
+        }
+        var core3t2cnt = localStorage.getItem('core3t2cnt');
+        if(core3t2cnt==null){
+        localStorage.setItem('core3t2cnt',"30");
+        }
+        var cardio1t2cnt = localStorage.getItem('cardio1t2cnt');
+        if(cardio1t2cnt==null){
+        localStorage.setItem('cardio1t2cnt',"30");
+        }
+        var cardio2t2cnt = localStorage.getItem('cardio2t2cnt');
+        if(cardio2t2cnt==null){
+        localStorage.setItem('cardio2t2cnt',"30");
+        }
+        var cardio3t2cnt = localStorage.getItem('cardio3t2cnt');
+        if(cardio3t2cnt==null){
+        localStorage.setItem('cardio3t2cnt',"30");
+        }
+        var klasicnit2cnt = localStorage.getItem('klasicnit2cnt');
+        if(klasicnit2cnt==null){
+        localStorage.setItem('klasicnit2cnt',"30");
+        }
+        var reformert2cnt = localStorage.getItem('reformert2cnt');
+        if(reformert2cnt==null){
+        localStorage.setItem('reformert2cnt',"30");
+        }
+        var stott2cnt = localStorage.getItem('stott2cnt');
+        if(stott2cnt==null){
+        localStorage.setItem('stott2cnt',"30");
+        }
+        var ashtangat2cnt = localStorage.getItem('ashtangat2cnt');
+        if(ashtangat2cnt==null){
+        localStorage.setItem('ashtangat2cnt',"30");
+        }
+        var bikramt2cnt = localStorage.getItem('bikramt2cnt');
+        if(bikramt2cnt==null){
+        localStorage.setItem('bikramt2cnt',"30");
+        }
+        var hathat2cnt = localStorage.getItem('hathat2cnt');
+        if(hathat2cnt==null){
+        localStorage.setItem('hathat2cnt',"30");
+        }
+     
+
+    } 
+
+
+    function showButton(input) {
+        
+        let myCnt = input.id+"cnt";
+        let val = parseInt(localStorage.getItem(myCnt));
+        if(val>0) {
+            input.innerHTML="bla bla bla";
+
+        }
+        else{
+
+        }
+    } 
+
+  
+
+
+    function Reserve(input)  {
+
+
+            if(input.id=="cardio1t1") {
+                let x=input.id+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                if (cnt>0) {
+                    let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                    if(korisnik.treninzi["cardio1t1"]!=true){
+                    cnt--;
+                    localStorage.setItem(x,cnt);
+                    korisnik.treninzi["cardio1t1"]=true;
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    //  korisnik.core1t1="Saturday 19:00";
+                    alert("You have successfully reserved an appointment!");
+                 
+                    var prikaz=document.getElementById("prikaz");
+
+                    let str = "<div class='row'><div class='col-sm-6 text-center'><h3>Monday</h3>"+
+                    "<p>09:00</p>"+"Available spaces: "+cnt+ "<br/>";
+
+                    if(parseInt(cnt)>0) {
+                    prikaz.innerHTML=str+"<button id='cardio1t1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button>"+
+                    "<br><button id='cardio1t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div></div>";
+                    }              
+                    else  prikaz.innerHTML=str+"<button id='cardio1t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div>";
+
+                    }
+                    else{
+                        alert("You have already made a reservation");
+
+                        return;
+                    }                   
+                }
+
+            }
+
+            if(input.id=="cardio1t2") {
+                
+
+            }
+
+
+            if(input.id=="cardio2t1") {
+                let x=input.id+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                if (cnt>0) {
+                    let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                    if(korisnik.treninzi["cardio2t1"]!=true){
+                    cnt--;
+                    localStorage.setItem(x,cnt);
+                    korisnik.treninzi["cardio2t1"]=true;
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    //  korisnik.core1t1="Saturday 19:00";
+                    alert("You have successfully reserved an appointment!");
+                              
+                              
+                    var prikaz=document.getElementById("prikaz");
+
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Thursday</h3>"+
+                    "<p>09:00</p>"+"Available spaces: "+cnt+ "<br/>";
+
+                    if(parseInt(cnt)>0) {
+                    prikaz.innerHTML=str+"<button id='cardio2t1' type='button' class='btn btn-danger' onclick='Reserve(this)' style = 'width:55px'>Reserve</button>"+
+                    "<br><button id='cardio2t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div></div>";
+                    }              
+                    else  prikaz.innerHTML=str+"<button id='cardio2t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div>";
+
+                    }
+                    else{
+                        alert("You have already made a reservation");
+               
+                        return;
+                    }             
+                }
+
+            }
+
+
+
+            if(input.id=="cardio2t2") {
+
+            }
+
+            
+            
+            
+            if(input.id=="cardio3t1") {
+                let x=input.id+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                if (cnt>0) {
+                    let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                    if(korisnik.treninzi["cardio3t1"]!=true){
+                    cnt--;
+                    localStorage.setItem(x,cnt);
+                    korisnik.treninzi["cardio3t1"]=true;
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    //  korisnik.core1t1="Saturday 19:00";
+                    alert("You have successfully reserved an appointment!");
+                              
+                              
+                    var prikaz=document.getElementById("prikaz");
+
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Friday</h3>"+
+                    "<p>09:00</p>"+"Available spaces: "+cnt+ "<br/>";
+
+                    if(parseInt(cnt)>0) {
+                    prikaz.innerHTML=str+"<button id='cardio3t1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button>"+
+                    "<br><button id='cardio3t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div></div>";
+                    }              
+                    else  prikaz.innerHTML=str+"<button id='cardio3t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div>";
+
+                    }
+                    else{
+                        alert("You have already made a reservation");
+               
+                        return;
+                    }                   
+                }
+
+            }
+
+
+
+            if(input.id=="cardio3t2") {
+
+            }   
+
+
+        /////OVAJ RADIMO PRVO
+
+
+            if(input.id=="core1t1") {
+
+                let x=input.id+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                if (cnt>0) {
+                    //alert("Usao u rezervaciju zbog cnt");
+                    let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                    if(korisnik.treninzi["core1t1"]!=true){
+                   // alert("Usao u rezervaciju zbog toga sto nije do sada rezervisao");
+                    cnt--;
+                    localStorage.setItem(x,cnt);
+                    korisnik.treninzi["core1t1"]=true;
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    //  korisnik.core1t1="Saturday 19:00";
+                    alert("You have successfully reserved an appointment!");
+                    var core1t1cnt=localStorage.getItem("core1t1cnt");
+               
+                    var prikaz=document.getElementById("prikaz");
+
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Monday</h3>"+
+                    "<p>12:00</p>"+"Available spaces: "+cnt+ "<br/>";
+
+                    if(parseInt(cnt)>0) {
+                    prikaz.innerHTML=str+"<button id='core1t1' type='button' class='btn btn-danger' onclick='Reserve(this)' style = 'width:55px'>Reserve</button>"+
+                    "<br><button id='core1t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div></div>";
+                    }              
+                    else  prikaz.innerHTML=str+"<button id='core1t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div>";
+
+                    }
+                    else{
+                        alert("You have already made a reservation");
+               
+                        return;
+                    }                   
+                }
+
+
+            }
+
+
+            
+            if(input.id=="core1t2") {
+
+
+            
+
+            }
+
+            if(input.id=="core2t1") {
+                let x=input.id+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                if (cnt>0) {
+                    let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                    if(korisnik.treninzi["core2t1"]!=true){
+                    cnt--;
+                    localStorage.setItem(x,cnt);
+                    korisnik.treninzi["core2t1"]=true;
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    //  korisnik.core1t1="Saturday 19:00";
+                    alert("You have successfully reserved an appointment!");
+                              
+                              
+                    var prikaz=document.getElementById("prikaz");
+
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Tuesday</h3>"+
+                    "<p>12:00</p>"+"Available spaces: "+cnt+ "<br/>";
+
+                    if(parseInt(cnt)>0) {
+                    prikaz.innerHTML=str+"<button id='core2t1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button>"+
+                    "<br><button id='core2t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div></div>";
+                    }              
+                    else  prikaz.innerHTML=str+"<button id='core2t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div>";
+
+                    }
+                    else{
+                        alert("You have already made a reservation");
+               
+                        return;
+                    }                   
+                }
+
+            }
+
+
+            if(input.id=="core2t2") {
+
+            }
+
+
+            if(input.id=="core3t1") {
+                let x=input.id+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                if (cnt>0) {
+                    let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                    if(korisnik.treninzi["core3t1"]!=true){
+                    cnt--;
+                    localStorage.setItem(x,cnt);
+                    korisnik.treninzi["core3t1"]=true;
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    //  korisnik.core1t1="Saturday 19:00";
+                    alert("You have successfully reserved an appointment!");
+                              
+                              
+                    var prikaz=document.getElementById("prikaz");
+
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Tuesday</h3>"+
+                    "<p>19:00</p>"+"Available spaces: "+cnt+ "<br/>";
+
+                    if(parseInt(cnt)>0) {
+                    prikaz.innerHTML=str+"<button id='core3t1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='55px'>Reserve</button>"+
+                    "<br><button id='core3t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div></div>";
+                    }              
+                    else  prikaz.innerHTML=str+"<button id='core3t1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div>";
+
+                    }
+                    else{
+                        alert("You have already made a reservation");
+               
+                        return;
+                    }                   
+                }
+
+
+            }
+
+            if(input.id=="core3t2") {
+
+
+            }
+
+
+            if(input.id=="klasicnit1") {
+                let x=input.id+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                if (cnt>0) {
+                    let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                    if(korisnik.treninzi["klasicnit1"]!=true){
+                    cnt--;
+                    localStorage.setItem(x,cnt);
+                    korisnik.treninzi["klasicnit1"]=true;
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    //  korisnik.core1t1="Saturday 19:00";
+                    alert("You have successfully reserved an appointment!");
+                              
+                              
+                    var prikaz=document.getElementById("prikaz");
+
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Saturday</h3>"+
+                    "<p>21:00</p>"+"Available spaces: "+cnt+ "<br/>";
+
+                    if(parseInt(cnt)>0) {
+                    prikaz.innerHTML=str+"<button id='klasicnit1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button>"+
+                    "<br><button id='klasicnit1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div></div>";
+                    }              
+                    else  prikaz.innerHTML=str+"<button id='klasicnit1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div>";
+
+                    }
+                    else{
+                        alert("You have already made a reservation");
+               
+                        return;
+                    }                   
+                }
+
+
+            }
+
+            
+            if(input.id=="klasicnit2") {
+
+
+}
+
+
+
+
+            if(input.id=="reformert1") {
+                let x=input.id+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                if (cnt>0) {
+                    let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                    if(korisnik.treninzi["reformert1"]!=true){
+                    cnt--;
+                    localStorage.setItem(x,cnt);
+                    korisnik.treninzi["reformert1"]=true;
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    //  korisnik.core1t1="Saturday 19:00";
+                    alert("You have successfully reserved an appointment!");
+                              
+                              
+                    var prikaz=document.getElementById("prikaz");
+
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Saturday</h3>"+
+                    "<p>18:00</p>"+"Available spaces: "+cnt+ "<br/>";
+
+                    if(parseInt(cnt)>0) {
+                    prikaz.innerHTML=str+"<button id='reformert1' type='button' class='btn btn-danger' onclick='Reserve(this)' style='width:55px'>Reserve</button"+
+                    " <br><button id='reformert1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div></div>";
+                    }              
+                    else  prikaz.innerHTML=str+"<button id='reformert1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div>";
+
+                    }
+                    else{
+                        alert("You have already made a reservation");
+               
+                        return;
+                    }                   
+                }
+
+            }
+
+
+
+
+            if(input.id=="reformert2") {
+
+}
+
+
+
+
+            if(input.id=="stott1") {
+                let x=input.id+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                if (cnt>0) {
+                    let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                    if(korisnik.treninzi["stott1"]!=true){
+                    cnt--;
+                    localStorage.setItem(x,cnt);
+                    korisnik.treninzi["stott1"]=true;
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    //  korisnik.core1t1="Saturday 19:00";
+                    alert("You have successfully reserved an appointment!");
+                              
+                              
+                    var prikaz=document.getElementById("prikaz");
+
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Wednesday</h3>"+
+                    "<p>19:00</p>"+"Available spaces: "+cnt+ "<br/>";
+
+                    if(parseInt(cnt)>0) {
+                    prikaz.innerHTML=str+"<button id='stottt1' type='button' class='btn btn-danger' onclick='Reserve(this)' style = 'width:55px'>Reserve</button>"+
+                    "<br><button id='stott1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div></div>";
+                    }              
+                    else  prikaz.innerHTML=str+"<button id='stott1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div>";
+
+                    }
+                    else{
+                        alert("You have already made a reservation");
+               
+                        return;
+                    }                   
+                }
+
+            }
+
+            if(input.id=="stott2") {
+
+            }
+
+
+            if(input.id=="ashtangat1") {
+                let x=input.id+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                if (cnt>0) {
+                    let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                    if(korisnik.treninzi["ashtangat1"]!=true){
+                    cnt--;
+                    localStorage.setItem(x,cnt);
+                    korisnik.treninzi["ashtangat1"]=true;
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    //  korisnik.core1t1="Saturday 19:00";
+                    alert("You have successfully reserved an appointment!");
+                              
+                              
+                    var prikaz=document.getElementById("prikaz");
+
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Friday</h3>"+
+                    "<p>20:00</p>"+"Available spaces: "+cnt+ "<br/>";
+
+                    if(parseInt(cnt)>0) {
+                    prikaz.innerHTML=str+"<button id='ashtangat1' type='button' class='btn btn-danger' onclick='Reserve(this)' style = 'width:55px'>Reserve</button>"+
+                    "<br><button id='ashtangat1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div></div>";
+                    }              
+                    else  prikaz.innerHTML=str+"<button id='ashtangat1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div>";
+
+                    }
+                    else{
+                        alert("You have already made a reservation");
+               
+                        return;
+                    }                   
+                }
+
+            }
+
+            if(input.id=="ashtangat2") {
+
+            }
+
+            if(input.id=="bikramt1") {
+                let x=input.id+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                if (cnt>0) {
+                    let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                    if(korisnik.treninzi["bikramt1"]!=true){
+                    cnt--;
+                    localStorage.setItem(x,cnt);
+                    korisnik.treninzi["bikramt1"]=true;
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    //  korisnik.core1t1="Saturday 19:00";
+                    alert("You have successfully reserved an appointment!");
+                              
+                              
+                    var prikaz=document.getElementById("prikaz");
+
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Thursday</h3>"+
+                    "<p>20:00</p>"+"Available spaces: "+cnt+ "<br/>";
+
+                    if(parseInt(cnt)>0) {
+                    prikaz.innerHTML=str+"<button id='bikramt1' type='button' class='btn btn-danger' onclick='Reserve(this)' style = 'width:55px'>Reserve</button>"+
+                    "<br><button id='bikramt1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div></div>";
+                    }              
+                    else  prikaz.innerHTML=str+"<button id='bikramt1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div>";
+
+                    }
+                    else{
+                        alert("You have already made a reservation");               
+                        return;
+                    }                   
+                }
+
+            }
+
+            if(input.id=="bikramt2") {
+
+            }
+
+
+            if(input.id=="hathat1") {
+                let x=input.id+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                if (cnt>0) {
+                    let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                    if(korisnik.treninzi["hathat1"]!=true){
+                    cnt--;
+                    localStorage.setItem(x,cnt);
+                    korisnik.treninzi["hathat1"]=true;
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    //  korisnik.core1t1="Saturday 19:00";
+                    alert("You have successfully reserved an appointment!");
+                              
+                              
+                    var prikaz=document.getElementById("prikaz");
+
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Wednesday</h3>"+
+                    "<p>21:00</p>"+"Available spaces: "+cnt+ "<br/>";
+
+                    if(parseInt(cnt)>0) {
+                    prikaz.innerHTML=str+"<button id='hathat1' type='button' class='btn btn-danger' onclick='Reserve(this)' style = 'width:55px'>Reserve</button>"+
+                    "<br><button id='hathat1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button> </div></div>";
+                    }              
+                    else  prikaz.innerHTML=str+"<button id='hathat1o' type='button' class='btn btn-success' onclick='otkazi(this)' style='width:55px'>Cancel</button></div>";
+
+                    }
+                    else{
+                        alert("You have already made a reservation");
+               
+                        return;
+                    }                   
+                }
+
+            }
+
+            if(input.id=="hathat2") {
+
+            }
+
+}
+
+
+    function otkazi(input) {
+        if(input.id == 'cardio1t1o') {
+                let x='cardio1t1'+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                if(korisnik.treninzi["cardio1t1"]==true) {
+                    cnt++;
+                    korisnik.treninzi["cardio1t1"]=false;
+                    localStorage.setItem(x,cnt);
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    alert("You have successfully cancelled your appointment!");
+                    var prikaz=document.getElementById("prikaz");
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Monday</h3>"+
+                    "<p>09:00</p>"+"Available spaces: "+cnt+ "<br/>";
+                    str+="<button id='cardio1t1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>"
+                    prikaz.innerHTML=str;
+                }
+                else alert('Should never happen');
+        }
+        if(input.id=='cardio2t1o') {
+            let x='cardio2t1'+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                if(korisnik.treninzi["cardio2t1"]==true) {
+                    cnt++;
+                    korisnik.treninzi["cardio2t1"]=false;
+                    localStorage.setItem(x,cnt);
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    alert("You have successfully cancelled your appointment!");
+                    var prikaz=document.getElementById("prikaz");
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Thursday</h3>"+
+                    "<p>09:00</p>"+"Available spaces: "+cnt+ "<br/>";
+                    str+="<button id='cardio2t1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>"
+                    prikaz.innerHTML=str;
+                }
+                else alert('Should never happen');
+
+        }
+        if(input.id=='cardio3t1o') {
+            let x='cardio3t1'+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                if(korisnik.treninzi["cardio3t1"]==true) {
+                    cnt++;
+                    korisnik.treninzi["cardio3t1"]=false;
+                    localStorage.setItem(x,cnt);
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    alert("You have successfully cancelled your appointment!");
+                    var prikaz=document.getElementById("prikaz");
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Friday</h3>"+
+                    "<p>09:00</p>"+"Available spaces: "+cnt+ "<br/>";
+                    str+="<button id='cardio3t1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>"
+                    prikaz.innerHTML=str;
+                }
+                else alert('Should never happen');
+            
+        }
+        if(input.id=='core1t1o') {
+            let x='core1t1'+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                if(korisnik.treninzi["core1t1"]==true) {
+                    cnt++;
+                    korisnik.treninzi["core1t1"]=false;
+                    localStorage.setItem(x,cnt);
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    alert("You have successfully cancelled your appointment!");
+                    var prikaz=document.getElementById("prikaz");
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Monday</h3>"+
+                    "<p>12:00</p>"+"Available spaces: "+cnt+ "<br/>";
+                    str+="<button id='core1t1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>"
+                    prikaz.innerHTML=str;
+                }
+                else alert('Should never happen');
+            
+        }
+        if(input.id=='core2t1o') {
+            let x='core2t1'+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                if(korisnik.treninzi["core2t1"]==true) {
+                    cnt++;
+                    korisnik.treninzi["core2t1"]=false;
+                    localStorage.setItem(x,cnt);
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    alert("You have successfully cancelled your appointment!");
+                    var prikaz=document.getElementById("prikaz");
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Tuesday</h3>"+
+                    "<p>12:00</p>"+"Available spaces: "+cnt+ "<br/>";
+                    str+="<button id='core2t1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>"
+                    prikaz.innerHTML=str;
+                }
+                else alert('Should never happen');
+
+            
+        }
+        if(input.id=='core3t1o') {
+            let x='core3t1'+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                if(korisnik.treninzi["core3t1"]==true) {
+                    cnt++;
+                    korisnik.treninzi["core3t1"]=false;
+                    localStorage.setItem(x,cnt);
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    alert("You have successfully cancelled your appointment!");
+                    var prikaz=document.getElementById("prikaz");
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Monday</h3>"+
+                    "<p>19:00</p>"+"Available spaces: "+cnt+ "<br/>";
+                    str+="<button id='core3t1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>"
+                    prikaz.innerHTML=str;
+                }
+                else alert('Should never happen');
+            
+        }
+        if(input.id=='klasicnit1o') {
+            let x='klasicnit1'+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                if(korisnik.treninzi["klasicnit1"]==true) {
+                    cnt++;
+                    korisnik.treninzi["klasicnit1"]=false;
+                    localStorage.setItem(x,cnt);
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    alert("You have successfully cancelled your appointment!");
+                    var prikaz=document.getElementById("prikaz");
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Saturday</h3>"+
+                    "<p>21:00</p>"+"Available spaces: "+cnt+ "<br/>";
+                    str+="<button id='klasicnit1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>"
+                    prikaz.innerHTML=str;
+                }
+                else alert('Should never happen');
+            
+        }
+        if(input.id=='reformert1o') {
+            let x='reformert1'+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                if(korisnik.treninzi["reformert1"]==true) {
+                    cnt++;
+                    korisnik.treninzi["reformert1"]=false;
+                    localStorage.setItem(x,cnt);
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    alert("You have successfully cancelled your appointment!");
+                    var prikaz=document.getElementById("prikaz");
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Saturday</h3>"+
+                    "<p>18:00</p>"+"Available spaces: "+cnt+ "<br/>";
+                    str+="<button id='reformert1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>"
+                    prikaz.innerHTML=str;
+                }
+                else alert('Should never happen');
+            
+        }
+        if(input.id=='stott1o') {
+            let x='stott1'+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                if(korisnik.treninzi["stott1"]==true) {
+                    cnt++;
+                    korisnik.treninzi["stott1"]=false;
+                    localStorage.setItem(x,cnt);
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    alert("You have successfully cancelled your appointment!");
+                    var prikaz=document.getElementById("prikaz");
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Wednesday</h3>"+
+                    "<p>19:00</p>"+"Available spaces: "+cnt+ "<br/>";
+                    str+="<button id='stott1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>"
+                    prikaz.innerHTML=str;
+                }
+                else alert('Should never happen');
+            
+            
+        }
+        if(input.id=='ashtangat1o') {
+            let x='ashtangat1'+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                if(korisnik.treninzi["ashtangat1"]==true) {
+                    cnt++;
+                    korisnik.treninzi["ashtangat1"]=false;
+                    localStorage.setItem(x,cnt);
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    alert("You have successfully cancelled your appointment!");
+                    var prikaz=document.getElementById("prikaz");
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Friday</h3>"+
+                    "<p>20:00</p>"+"Available spaces: "+cnt+ "<br/>";
+                    str+="<button id='ashtangat1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>"
+                    prikaz.innerHTML=str;
+                }
+                else alert('Should never happen');
+            
+        }
+        if(input.id=='bikramt1o') {
+            let x='bikramt1'+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                if(korisnik.treninzi["bikramt1"]==true) {
+                    cnt++;
+                    korisnik.treninzi["bikramt1"]=false;
+                    localStorage.setItem(x,cnt);
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    alert("You have successfully cancelled your appointment!");
+                    var prikaz=document.getElementById("prikaz");
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Thursday</h3>"+
+                    "<p>20:00</p>"+"Available spaces: "+cnt+ "<br/>";
+                    str+="<button id='bikramt1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>"
+                    prikaz.innerHTML=str;
+                }
+                else alert('Should never happen');
+            
+        }
+        if(input.id=='hathat1o') {
+            let x='hathat1'+"cnt";
+                let cnt=parseInt(localStorage.getItem(x));
+                let korisnik= JSON.parse(localStorage.getItem('korisnik'));
+                if(korisnik.treninzi["hathat1"]==true) {
+                    cnt++;
+                    korisnik.treninzi["hathat1"]=false;
+                    localStorage.setItem(x,cnt);
+                    localStorage.setItem("korisnik",JSON.stringify(korisnik));
+                    alert("You have successfully cancelled your appointment!");
+                    var prikaz=document.getElementById("prikaz");
+                    let str = "<div class='row'>  <div class='col-sm-6 text-center'><h3>Wednesday</h3>"+
+                    "<p>21:00</p>"+"Available spaces: "+cnt+ "<br/>";
+                    str+="<button id='hathat1' type='button' class='btn btn-success' onclick='Reserve(this)'>Reserve</button> </div> </div>"
+                    prikaz.innerHTML=str;
+                }
+                else alert('Should never happen');
+            
+        }
+
+    }
+
+
+    </script>
+</head>
+<body onload="Load()">
+
+    <div class="container">
+        <div class='row'>
+            <div class='col-sm-2 text-left  header'>
+                <img src='pob.jpg' height='90px' width='70%'>
+            </div>
+            <div class='col-sm-2 text-left  header'>
+                <p class='logo'>Teretana Pobednik</p>
+            </div>
+            <div class='col-sm-8 header lista'>
+                <nav>
+                    <ul>
+                        <li><a href='indexENG.html'>Home</a></li>
+                        <li><a href='uslugeENG.html'>Services</a></li>
+                        <li><a href="ZakazivanjeENG.html" style="color: yellow;" class='trenutna'>Appointments</a></li>
+                        <li><a href='mojNalogENG.html'>My Account</a></li>
+                        <li><a href="About.html">About us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+       
+        <div class='row'>
+            <div class='col-sm-12 navigacija' style="font-size: 16px;">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb purple lighten-4">
+                      <li class="breadcrumb-item"><a class="black-text" href="indexENG.html">Home</a></li>
+                      <li class="breadcrumb-item active">Appointments</li>
+                    </ol>
+                </nav>
+                  
+            </div>
+        </div>
+        <div class="row padding" style="background-color: #9366c0;">
+            <div class="col-sm-3 filter">
+                <br>
+                <h3 class="">
+                    Choose a type of training
+                </h3>
+                <br>
+               <a style="text-decoration: none; cursor: pointer;"><p id='cardio' onclick="openMenu(this)" class='treninzi'>Cardio</p></a>
+               <a style="text-decoration: none; cursor: pointer;"><p id='core' onclick="openMenu(this)" class='treninzi'>Core</p></a>
+               <a style="text-decoration: none; cursor: pointer;"><p id='pilates' onclick="openMenu(this)" class='treninzi'>Pilates</p></a>
+               <a style="text-decoration: none; cursor: pointer;"><p id='yoga' onclick="openMenu(this)" class='treninzi'>Yoga</p></a>
+            </div>
+            <div class="col-sm-9" id='prikaz' style='height:250px'>
+
+            </div>
+
+        </div>
+        <div class="row mar"  >
+            <div class="col-sm-12 broj_telefona">
+                
+                You can also make an appointment by phone: <a class='linkic' href="tel:+381631234567">063/123-4567</a>
+                There can be up to 30 people per appointment. Massages and nutricionist's services are booked
+                exclusively by phone. Choose a training program today, and make your life healthier! 
+
+          
+
+            </div>
+
+        </div>
+
+        <div class='row mar'>
+
+            <div class='col-sm-12 meni'> 
+                <h3 class='menuheader'>
+                    Read more
+                </h3>
+            </div>
+        </div>
+
+
+        
+        <div class='row meni'>
+
+            <div class='col-sm-3 meni'> 
+                <h4 class='menuheader'>
+                    Usluge
+                </h4>
+            <p class="donji_meni">
+                        <a href="treningENG.html" class= 'menielem'>Training </a>&nbsp;&nbsp;
+                        <i class="em em-muscle" aria-role="presentation" aria-label="FLEXED BICEPS"></i>
+                        <br/>
+                  
+                        <a href="nutricionistaENG.html"  class= 'menielem'>Nutricionist</a>
+                        &nbsp;&nbsp;
+                        <i class="em em-banana" aria-role="presentation" aria-label="BANANA"></i>
+                        <br/>
+                        
+
+                        <a href="masazaENG.html"  class= 'menielem'>Massages</a>&nbsp;&nbsp;
+                        <i class="em em-massage" aria-role="presentation" aria-label="FACE MASSAGE"></i>
+                        
+                       
+            </p> 
+            <br/>
+          
+            
+                
+       
+            </div>
+
+            <div class='col-sm-3 meni'> 
+                <h4 class='menuheader'>
+                    Staff
+                </h4>
+                <p class="donji_meni">
+                    <a href="FilipENG.html" class= 'menielem'>Filip </a>
+                    <i class="em em-man-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br/>
+              
+                    <a href="VanjaENG.html"  class= 'menielem'>Vanja</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br/>
+                    
+                    <a href="VukasinENG.html"  class= 'menielem'>Vukasin</a>
+                    <i class="em em-weight_lifter" aria-role="presentation" aria-label=""></i>
+                    <br/>
+
+                    <a href="ZvezdanaENG.html"  class= 'menielem'>Zvezdana</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                
+                 </p> 
+            </div>
+
+            <div class='col-sm-3 meni'> 
+                <h4 class='menuheader'>
+                    Schedule     
+
+                   
+                </h4>
+                <p class="donji_meni">
+                 <a href="Zakazivanje.html"  class= 'menielem'>See our schedule</a>
+                 <i class="em em-calendar" aria-role="presentation" aria-label="TEAR-OFF CALENDAR"></i>
+                </p>
+
+            </div>
+
+
+
+            <div class='col-sm-3 meni'> 
+                <h4 class='menuheader'>
+                    My Account
+                </h4>
+                <p class="donji_meni">
+                <a href="mojNalog.html"  class= 'menielem'>Account</a> 
+                <i class="em em-male-technologist" aria-role="presentation" aria-label=""></i>
+                <br/>
+                <h4 class='menuheader'>
+                    Languages/Jezici
+                </h4>
+                <div> 
+
+                    <p style="font-size: 10px;">
+                        <a href="ZakazivanjeENG.html"> <img src="jack.png" alt="" height="15" width="30"></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="Zakazivanje.html"><img src="srbija.png" alt="" height="15" width="30"></a>
+                    <br/>
+                    <a style="text-decoration: none; color: white;" href="ZakazivanjeENG.html">English</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <a style="text-decoration: none; color: white;" href="Zakazivanje.html">Serbian</a> 
+
+                    </p>
+
+                    
+
+                </div>
+                </p>
+           </div>
+
+        </div>
+        
+        <div class='row'>
+            <div class='col-sm-12 footer'>
+                „Copyright 2020, Јована Јанковић, Филип Лучић, Одсек за софтверско инжењерство Електротехничког факултета
+                Универзитета у Београду"
+            </div>
+        </div>
+        
+    </div>
+    
+</body>
+
+</html>

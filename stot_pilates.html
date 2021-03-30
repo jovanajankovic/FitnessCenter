@@ -1,0 +1,440 @@
+<html>
+<head>
+    <title>Stot pilates</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel='stylesheet'
+        href='file:///C:/Users/Marina/Desktop/fontawesome-free-5.13.0-web/fontawesome-free-5.13.0-web/css/all.css'>
+    </link>
+    <link rel='stylesheet' href='trening.css'>
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+    <link rel='stylesheet' type='text/css' href='lightbox2-2.11.1/lightbox2-2.11.1/dist/css/lightbox.min.css'>
+    <script type='text/javascript' src='lightbox2-2.11.1/lightbox2-2.11.1/dist/js/lightbox-plus-jquery.min.js'></script>
+    <link rel="stylesheet" href="VenoBox-1.9.0/VenoBox-1.9.0/venobox/venobox.css" type="text/css" media="screen" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--  <script type="text/javascript" src="VenoBox-master/VenoBox-master/venobox/venobox.min.js"></script> -->
+    <script type="text/javascript" src="VenoBox-1.9.0/VenoBox-1.9.0/venobox/venobox.min.js"></script>
+</head>
+
+<script>
+    var korisnici; //mala baza koja se dohvata iz index.html
+    var ime, prezime;
+    var trening_program = "Stot pilates";
+    var komentari = [];
+    var broj_ocena = 0;
+    var korisnik;
+
+    function ucitaj() {
+        $('.venobox').venobox();
+        if (localStorage.getItem("hello_stot_pilates")) { //znaci da je neko pritisnuo refresh
+            komentari = localStorage.getItem("komentari_stot_pilates");
+            komentari = JSON.parse(komentari);
+        }
+
+        var ukupno = localStorage.getItem("suma_ocena_stot_pilates");
+
+        korisnik = localStorage.getItem("korisnik");
+        korisnik = JSON.parse(korisnik);
+        ime = korisnik.ime;
+        prezime = korisnik.prezime;
+
+        if (ukupno == null) {
+            document.getElementById("ocena").innerHTML = "Nema ocena";
+        }
+        else {
+            var broj = localStorage.getItem("broj_ocena_stot_pilates");
+            broj = parseInt(broj);
+            ukupno = parseInt(ukupno);
+            var upisi = ukupno / broj;
+            upisi = upisi.toFixed(1);
+            document.getElementById("ocena").innerHTML = upisi + "/10";
+        }
+
+        korisnici = localStorage.getItem("korisnici");
+        korisnici = JSON.parse(korisnici);
+
+        //            ime="Jovana";
+        //          prezime="Jankovic";
+
+        var dohvati_komentare;
+        dohvati_komentare = localStorage.getItem("komentari_stot_pilates");
+        dohvati_komentare = JSON.parse(dohvati_komentare);
+        for (var i = 0; i < dohvati_komentare.length; i++) {
+            document.getElementById("komentar" + i).style.backgroundColor = 'lightgray';
+            document.getElementById("komentar" + i).innerHTML = dohvati_komentare[i];
+        }
+    }
+
+    function posaljiKomentar() {
+        if (document.forma.komentar.value == "") {
+            alert("Ne mozete poslati prazan komentar");
+            return;
+        }
+
+        var jeste = false;
+        var jeste_jeste = false;
+        for (var i = 0; i < korisnici.length; i++) {
+            for (var j = 0; j < korisnici[i].trening.length; j++) {
+                if (korisnici[i].trening[j] == trening_program) {
+                    jeste_jeste = true;
+                    if (korisnici[i].ime == ime && korisnici[i].prezime == prezime) {
+                        jeste = true;
+                    }
+                    break;
+                }
+            }
+
+            if (jeste == true && jeste_jeste == true) {
+                break;
+            }
+        }
+
+        if (jeste == true && jeste_jeste == true) {
+            var broj_komentara = localStorage.getItem("broj_komentara_stot_pilates");
+            if (broj_komentara == null) {
+                broj_komentara = 0;
+            }
+            document.getElementById("komentar" + broj_komentara).style.backgroundColor = 'lightgray';
+            document.getElementById("komentar" + broj_komentara).innerHTML = document.forma.komentar.value;
+
+            komentari[broj_komentara] = document.forma.komentar.value;
+            localStorage.setItem("komentari_stot_pilates", JSON.stringify(komentari));
+            broj_komentara++;
+            localStorage.setItem("broj_komentara_stot_pilates", broj_komentara);
+            localStorage.setItem("hello_stot_pilates", 1);
+            alert("Vas komentar je ostavljen!");
+        }
+        else {
+            alert("Niste pohadjali ovaj trening program! Ne mozete da ostavite komentar!");
+        }
+    }
+
+    function oceni() {
+        var ocenaString = document.forma_ocena.ocena.value; //dohvaceno iz forme
+        var ocena = parseInt(ocenaString); //parsirano u int
+      //  alert("usao u ocenu");
+        if (ocena < 1 || ocena > 10) {
+            alert("Niste uneli ispravnu vrednost! Postoje ocene od 1-10");
+            return;
+        }
+        if (isNaN(ocena)) {
+            alert("Ocena ne moze biti bilo koji karakter,vec iskljucivo broj");
+            return;
+        }
+
+        //provera da li je prisutan na tim treninzima
+        var jeste = false;
+        var jeste_jeste = false;
+        for (var i = 0; i < korisnici.length; i++) {
+            //  alert("Petlja");
+            for (var j = 0; j < korisnici[i].trening.length; j++) {
+                if (korisnici[i].trening[j] == trening_program) {
+                    jeste_jeste = true;
+                    if (korisnici[i].ime == ime && korisnici[i].prezime == prezime) {
+                        jeste = true;
+                    }
+                    break;
+                }
+            }
+            if (jeste == true && jeste_jeste == true) {
+                break;
+            }
+        }
+        //alert("Prosao petlju");
+        if (jeste == true && jeste_jeste == true) {
+            var ukupnaOcena = localStorage.getItem("suma_ocena_stot_pilates"); //do sada suma svih ocena
+            if (ukupnaOcena == null) { //prvi put ulazi u fju
+                // alert("Prvi put usao");
+                broj_ocena++;
+                ukupnaOcena = 0;
+                //   alert("Ostavio ocenu");
+                document.getElementById("ocena").innerHTML = ocena + "/10"; //upisuje se prva ocena jer do sada nije bilo ocena
+                localStorage.setItem("suma_ocena_stot_pilates", ocena); //cuvam tu sumu ocena, odnosno u ovom slucaju taj jedan broj
+                localStorage.setItem("broj_ocena_stot_pilates", broj_ocena); //koliko je bilo ocena do sada
+                localStorage.setItem("ocena_stot_pilates", ocena);
+                return;
+            }
+            else {
+                var ukupnaOcena = parseInt(ukupnaOcena);
+                var ocenaUpis = ukupnaOcena + ocena; //dodaje novu ocenu na sumu svih ocena
+                localStorage.setItem("suma_ocena_stot_pilates", ocenaUpis); //cuva se ta
+                broj_ocena = localStorage.getItem("broj_ocena_stot_pilates"); //broj ocena se dohvata
+                broj_ocena = parseInt(broj_ocena);
+                broj_ocena++;
+                ocenaUpis = ocenaUpis / broj_ocena;
+                ocenaUpis = ocenaUpis.toFixed(1);
+                document.getElementById("ocena").innerHTML = ocenaUpis + "/10";
+                localStorage.setItem("broj_ocena_stot_pilates", broj_ocena);
+                localStorage.setItem("ocena_stot_pilates", ocenaUpis);
+            }
+        }
+        else {
+            alert("Niste pohadjali ovaj trening program! Ne mozete da date ocenu!");
+        }
+    }
+
+    function obrisiStorage() {
+        localStorage.clear();
+    }
+
+</script>
+
+<body onload='ucitaj()'>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-2 text-left header'>
+                <img src='pob.jpg' height='90px' width='70%'>
+            </div>
+            <div class='col-sm-2 text-left header'>
+                <p class='logo'>Teretana Pobednik</p>
+            </div>
+            <div class='col-sm-8 header lista'>
+                <nav>
+                    <ul>
+                        <li><a href='index.html'>Početna</a></li>
+                        <li><a href='usluge.html' style="color: yellow;">Usluge</a></li>
+                        <li><a href='Zakazivanje.html'>Zakazivanje treninga</a></li>
+                        <li><a href='mojNalog.html'>Moj nalog</a></li>
+                        <li><a href="O nama.html">O nama</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12 navigacija'>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb purple lighten-4">
+                        <li class="breadcrumb-item"><a class="black-text" href="index.html">Pocetna</a></li>
+                        <li class="breadcrumb-item"><a class="black-text" href="trening.html">Treninzi</a></li>
+                        <li class="breadcrumb-item"><a class="black-text" href="pilates.html">Pilates</a></li>
+                        <li class="breadcrumb-item active">Stott pilates</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class='row spusti'>
+            <div class='col-sm-12'>
+                <h1 class='naslov'>Stott pilates</h1>
+                <br>
+                <p class='paragraf '>
+                    STOTT PILATES je savremeni pristup originalnoj metodi vežbanja osnivača pilatesa.
+                    Prefinjen metod rezultirao je uključivanjem modernih principa vežbanja i rehabilitacije
+                    Naglasak ove metode je na očuvanju prirodne krive kičme, stabilizaciji centra
+                    tela i ramenog obruča, neutralnom pozicioniranju zglobova i pravilnom disanju.
+                    Balansirajući između mišićne snage i fleksibilnosti, STOTT PILATES na
+                    siguran način popraviće vaše držanje, smanjiti bolove u leđima i tenzije u mišićima karlice.
+                    Ovakvim treningom izgradi ćete telo vitkog mišićnog tonusa, zavidne snage i pokretljivosti
+                    a pre svega zdravog duha. STOTT PILATES® ukljucuje trening na podlogama (Mat Pilates)
+                    uz veliki broj rekvizita kao i trening na Pilates spravama (Machinework).
+                </p>
+            </div>
+        </div>
+        <br>
+        <div class='row'>
+            <div class='col-sm-4'>
+                <img src='pilates/pilates.jpg' width='100%'>
+            </div>
+            <div class='col-sm-4  text-center'>
+                <h2 class='tezina'>Tezina treninga</h2>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star "></span>
+                <br>
+                <br>
+                <h2 class='tezina'>Trajanje treninga</h2>
+                <p class='trajanje'>50 min</p>
+                <h2 class='tezina'>Ocena treninga</h2>
+                <p class='trajanje' id='ocena'></p>
+                <form name='forma_ocena'>
+                    <input type='text' name='ocena' placeholder="Unesite ocenu">
+                </form>
+                <button class='btn dugme2' onclick='oceni()'>Oceni</button>
+            </div>
+            <!------------------->
+            <div class='col-sm-4'>
+                <img src='pilates/pilatesslika.jpg' width='100%'>
+            </div>
+        </div>
+        <br>
+        <!--za komentare-->
+        <div class='row'>
+            <div class='col-sm-12 text-center'>
+                <form name='forma'>
+                    <textarea cols='100' rows='4' name='komentar' placeholder="Ostavite komentar o treningu"></textarea>
+                </form>
+                <button class='btn dugme2' onclick='posaljiKomentar()'>Posalji komentar</button>
+              
+                <br>
+                <h2 class='text-left tezina'>Komentari klijenata:</h2>
+                <br>
+                <div id='komentar0' class='kom text-left'></div>
+                <div id='komentar1' class='kom text-left'></div>
+                <div id='komentar2' class='kom text-left'></div>
+                <div id='komentar3' class='kom text-left'></div>
+                <div id='komentar4' class='kom text-left'></div>
+                <div id='komentar5' class='kom text-left'></div>
+                <div id='komentar6' class='kom text-left'></div>
+                <div id='komentar7' class='kom text-left'></div>
+                <div id='komentar8' class='kom text-left'></div>
+                <div id='komentar9' class='kom text-left'></div>
+                <div id='komentar10' class='kom text-left'></div>
+                <div id='komentar11' class='kom text-left'></div>
+                <div id='komentar12' class='kom text-left'></div>
+                <div id='komentar13' class='kom text-left'></div>
+                <div id='komentar14' class='kom text-left'></div>
+                <div id='komentar15' class='kom text-left'></div>
+                <div id='komentar16' class='kom text-left'></div>
+                <div id='komentar17' class='kom text-left'></div>
+                <div id='komentar18' class='kom text-left'></div>
+                <div id='komentar19' class='kom text-left'></div>
+                <div id='komentar20' class='kom text-left'></div>
+            </div>
+        </div>
+
+        <!--za galeriju slika-->
+        <br>
+        <h2 class='text-left tezina'>Galerija slika: </h2>
+        <br>
+        <div class='row gallery'>
+            <div class='col-sm-4'>
+                <a href='pilates/rsz_pil1.jpg' data-lightbox="mygallery"> <img src='pilates/pil1.jpg' width='100%'
+                        height='200px'> </a>
+            </div>
+            <div class='col-sm-4'>
+                <a href='pilates/rsz_pil2.jpg' data-lightbox='mygallery'> <img src='pilates/pil2.jpg' width='100%'
+                        height='200px'> </a>
+            </div>
+            <div class='col-sm-4'>
+                <a href='pilates/rsz_pil3.jpg' data-lightbox='mygallery'> <img src='pilates/pil3.jpg' width='100%'
+                        height='200px'> </a>
+            </div>
+        </div>
+        <br>
+        <div class='row gallery'>
+            <div class='col-sm-4'>
+                <a href='pilates/rsz_pil4.jpg' data-lightbox='mygallery'> <img src='pilates/pil4.jpg' width='100%'
+                        height='200px'> </a>
+            </div>
+            <div class='col-sm-4'>
+                <a href='pilates/rsz_pil5.jpg' data-lightbox='mygallery'> <img src='pilates/pil5.jpg' width='100%'
+                        height='200px'> </a>
+            </div>
+            <div class='col-sm-4'>
+                <a href='pilates/rsz_pil6.jpg' data-lightbox='mygallery'><img src='pilates/pil6.jpg' width='100%'
+                        height='200px'></a>
+            </div>
+        </div>
+        <br>
+
+        <!--Za video klipove-->
+        <h2 class='text-left tezina'>Video sa treninga: </h2>
+        <br>
+        <div class='row'>
+            <div class='col-sm-2'></div>
+            <div class='col-sm-8 video'
+                style=' text-align:center; background-image: url("pilates/pilatesvideo.jpg"); height:500px; background-position: center; background-size: cover;'>
+                <a class='venobox klip' data-autoplay='true' data-vbtype='video'
+                    href='https://www.youtube.com/watch?v=8m7cJ-dlXz8'><i class="fa fa-play  fa-5x"
+                        style='margin-top: 200px;' aria-hidden="true"></i></a>
+            </div>
+            <div class='col-sm-2'></div>
+        </div>
+        <br />
+
+        <div class='row'>
+            <div class='col-sm-12 meni'>
+                <h3 class='menuheader'>
+                    Procitajte jos
+                </h3>
+            </div>
+        </div>
+
+        <div class='row meni'>
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Usluge
+                </h4>
+                <p>
+                    <a href="trening.html" class='menielem'>Teninzi </a>&nbsp;&nbsp;
+                    <i class="em em-muscle" aria-role="presentation" aria-label="FLEXED BICEPS"></i>
+                    <br />
+                    <a href="nutricionista.html" class='menielem'>Nutricionista</a>
+                    &nbsp;&nbsp;
+                    <i class="em em-banana" aria-role="presentation" aria-label="BANANA"></i>
+                    <br />
+                    <a href="masaza.html" class='menielem'>Masaze</a>&nbsp;&nbsp;
+                    <i class="em em-massage" aria-role="presentation" aria-label="FACE MASSAGE"></i>
+                </p>
+                <br />
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Zaposleni
+                </h4>
+                <p>
+                    <a href="Filip.html" class='menielem'>Filip </a>
+                    <i class="em em-man-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="Vanja.html" class='menielem'>Vanja</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="Vukasin.html" class='menielem'>Vukasin</a>
+                    <i class="em em-weight_lifter" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="Zvezdana.html" class='menielem'>Zvezdana</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                </p>
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Raspored
+                </h4>
+                <p>
+                    <a href="Zakazivanje.html" class='menielem'>Kompletan raspored</a>
+                    <i class="em em-calendar" aria-role="presentation" aria-label="TEAR-OFF CALENDAR"></i>
+                </p>
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Moj Nalog
+                </h4>
+                <p>
+                    <a href="mojNalog.html" class='menielem'>Nalog</a>
+                    <i class="em em-male-technologist" aria-role="presentation" aria-label=""></i>
+                    <br />
+                <h4 class='menuheader'>
+                    Jezici/Languages
+                </h4>
+                <div style="font-size: 10px;">
+                    <p>
+                        <a href="stot_pilatesENG.html"> <img src="jack.png" alt="" height="15" width="30"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="stot_pilates.html"><img src="srbija.png" alt="" height="15" width="30"></a>
+                        <br />
+                        <a style="text-decoration: none; color: white;" href="stot_pilates.html">engleski</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a style="text-decoration: none; color: white;" href="stot_pilates.html">srpski</a>
+                    </p>
+                </div>
+                </p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-sm-12 footer'>
+                „Copyright 2020, Јована Јанковић, Филип Лучић, Одсек за софтверско инжењерство Електротехничког
+                факултета
+                Универзитета у Београду"
+            </div>
+        </div>
+    </div>
+</body>
+</html>

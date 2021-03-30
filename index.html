@@ -1,0 +1,626 @@
+<html>
+<head>
+    <title>Pocetna stranica</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' href='style.css'>
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        var korisnici;
+
+        function nutricionista() {
+            window.open("nutricionista.html");
+        }
+        function masaza() {
+            window.open("masaza.html");
+        }
+
+        function trening() {
+            window.open("trening.html");
+        }
+
+        function saznaj() {
+            window.open('saznaj.html');
+        }
+
+        function ucitaj() {
+            // alert("usao u fju ucitaj");
+
+            //ucitavanje korisnika
+            var flag = localStorage.getItem("flag");
+            if (flag == null) { //bice null samo na prvom pozivu
+               // alert("Ucitao korisnika");
+                var korisnik = {
+                    "ime": "Jovana",
+                    "prezime": "Jankovic",
+                    "treninzi": {
+                        "core1t1": false,
+                        "core2t1": false,
+                        "core3t1": false,
+                        "cardio1t1": false,
+                        "cardio2t1": false,
+                        "cardio3t1": false,
+                        "klasicnit1": false,
+                        "reformert1": false,
+                        "stott1": false,
+                        "ashtangat1": false,
+                        "bikramt1": false,
+                        "hathat1": false,
+                        "core1t2": false,
+                        "core2t2": false,
+                        "core3t2": false,
+                        "cardio1t2": false,
+                        "cardio2t2": false,
+                        "cardio3t2": false,
+                        "klasicnit2": false,
+                        "reformert2": false,
+                        "stott2": false,
+                        "ashtangat2": false,
+                        "bikramt2": false,
+                        "hathat2": false
+                    }
+                };
+                localStorage.setItem('korisnik', JSON.stringify(korisnik));
+                localStorage.setItem("flag", 1);
+            }
+
+            //mala baza korisnika
+            korisnici = [
+
+                {
+                    ime: "Pera",
+                    prezime: "Peric",
+                    trening: ["Reformer pilates", "Cardio trening visokog intenziteta"]
+                },
+
+                {
+                    ime: "Jovana",
+                    prezime: "Jankovic",
+                    trening: ["Cardio trening visokog intenziteta", "Cardio trening niskog intenziteta", 'Klasicni pilates', 'Stot pilates', 'Reformer pilates']
+                },
+
+                {
+                    ime: "Filip",
+                    prezime: "Lucic",
+                    trening: ["Cardio trening visokog intenziteta", "Cardio trening niskog intenziteta", "Cardio trening srednjeg intenziteta", "Stot pilates", "Ashtanga Yoga", "Bikram Yoga", "Hatha Yoga", "Core - Hard", "Core - Easy", "Core - Medium", "Cardio training of low intensity", "Cardio training of medium intensity", "Cardio training of high intensity", "Classic pilates", "Klasicni pilates", "Reformer pilates"]
+                },
+                {
+                    ime: "Grigor",
+                    prezime: "Milosevic",
+                    trening: ["Cardio trening niskog intenziteta", "Cardio trening srednjeg intenziteta", 'Klasicni pilates']
+                }
+            ]
+
+            localStorage.setItem("korisnici", JSON.stringify(korisnici));
+          //  alert("Poslato u storage");
+
+
+            //dodajemo korisnika u storage
+            // localStorage.setItem('korisnik', JSON.stringify(korisnik));
+            //  localStorage.setItem("flag",1);
+
+            var ocena_klasicni_pilates = localStorage.getItem("ocena_klasicni_pilates");
+
+            if (ocena_klasicni_pilates == null) {
+                ocena_klasicni_pilates = 0;
+            } else {
+                ocena_klasicni_pilates = parseInt(ocena_klasicni_pilates);
+                //alert(ocena_klasicni_pilates);
+            }
+
+            var ocena_reformer_pilates = localStorage.getItem("ocena_reformer_pilates");
+
+            if (ocena_reformer_pilates == null) {
+                ocena_reformer_pilates = 0;
+                //  alert("Nema ocene za reformer");
+            } else {
+                ocena_reformer_pilates = parseInt(ocena_reformer_pilates);
+                //alert(ocena_reformer_pilates);
+            }
+
+
+            var ocena_stot_pilates = localStorage.getItem("ocena_stot_pilates");
+
+            if (ocena_stot_pilates == null) {
+                ocena_stot_pilates = 0;
+                //  alert("nema ocene za stot");
+            }
+            else {
+                ocena_stot_pilates = parseInt(ocena_stot_pilates);
+                //alert(ocena_stot_pilates);
+            }
+
+
+            var ocena_niski_cardio = localStorage.getItem("ocena_niski_cardio");
+
+            if (ocena_niski_cardio == null) {
+                ocena_niski_cardio = 0;
+                //alert("Nema ocene niski");
+            }
+            else {
+                ocena_niski_cardio = parseInt(ocena_niski_cardio);
+                //  alert(ocena_niski_cardio);
+            }
+
+            var ocena_srednji_cardio = localStorage.getItem("ocena_srednji_cardio");
+
+            if (ocena_srednji_cardio == null) {
+                ocena_srednji_cardio = 0;
+            }
+            else {
+                ocena_srednji_cardio = parseInt(ocena_srednji_cardio);
+            }
+
+            var ocena_visoki_cardio = localStorage.getItem("ocena_visok_cardio");
+
+            if (ocena_visoki_cardio == null) {
+                ocena_visoki_cardio = 0;
+            }
+            else {
+                ocena_visoki_cardio = parseInt(ocena_visoki_cardio);
+            }
+
+
+            var ocena_ashtanga_yoga = localStorage.getItem("ocena_ashtanga_yoga");
+
+            if (ocena_ashtanga_yoga == null) {
+                ashtanga_yoga = 0;
+            }
+            else {
+                ocena_ashtanga_yoga = parseInt(ocena_ashtanga_yoga);
+            }
+
+
+
+            var ocena_bikram_yoga = localStorage.getItem("ocena_bikram_yoga");
+
+            if (ocena_bikram_yoga == null) {
+                ocena_bikram_yoga = 0;
+            }
+            else {
+                ocena_bikram_yoga = parseInt(ocena_bikram_yoga);
+            }
+
+
+            var ocena_hatha_yoga = localStorage.getItem("ocena_hatha_yoga");
+
+            if (ocena_hatha_yoga == null) {
+                ocena_hatha_yoga = 0;
+            }
+            else {
+                ocena_hatha_yoga = parseInt(ocena_hatha_yoga);
+            }
+
+            var ocena_core_hard = localStorage.getItem("ocena_core_hard");
+
+            if (ocena_core_hard == null) {
+                ocena_core_hard = 0;
+            }
+            else {
+                ocena_core_hard = parseInt(ocena_core_hard);
+            }
+            var ocena_core_easy = localStorage.getItem("ocena_core_easy");
+
+            if (ocena_core_easy == null) {
+                ocena_core_easy = 0;
+            }
+            else {
+                ocena_core_easy = parseInt(ocena_core_easy);
+            }
+
+
+            var ocena_core_medium = localStorage.getItem("ocena_core_medium");
+
+            if (ocena_core_medium == null) {
+                ocena_core_medium = 0;
+            }
+            else {
+                ocena_core_medium = parseInt(ocena_core_medium);
+            }
+
+
+            var ocene = [
+                {
+                    trening: "Klasičan pilates",
+                    ocena: ocena_klasicni_pilates,
+                    opis: "Najjednostavniji oblik pilatesa!",
+                    link: "klasican_pilates.html"
+                },
+                {
+                    trening: "Reformer pilates",
+                    ocena: ocena_reformer_pilates,
+                    opis: "Odlicna vezba za sve!",
+                    link: "reformer_pilates.html"
+                },
+                {
+                    trening: "Stot pilates",
+                    ocena: ocena_stot_pilates,
+                    opis: "Najnoviji oblik pilatesa!",
+                    link: "stot_pilates.html"
+                },
+                {
+                    trening: "Cardio trening visokog intenziteta",
+                    ocena: ocena_visoki_cardio,
+                    opis: "Veoma zahtevan trening!",
+                    link: "visok.html"
+                },
+                {
+                    trening: "Cardio trening srednjeg intenziteta",
+                    ocena: ocena_srednji_cardio,
+                    opis: "Pogodan za svakoga!",
+                    link: "srednji.html"
+                },
+                {
+                    trening: "Cardio trening niskog intenziteta",
+                    ocena: ocena_niski_cardio,
+                    opis: "Trening pogodan za sve!",
+                    link: "nizak.html"
+                },
+                {
+                    trening: "Ashtanga Yoga",
+                    ocena: ocena_ashtanga_yoga,
+                    opis: "Veoma zahtevan trening",
+                    link: "ashtanga.html"
+                },
+                {
+                    trening: "Bikram Yoga",
+                    ocena: ocena_bikram_yoga,
+                    opis: "Najzabavniji trening u nasoj ponudi",
+                    link: "bikram.html"
+                },
+                {
+                    trening: "Hatha Yoga",
+                    ocena: ocena_hatha_yoga,
+                    opis: "Pogodan za meditaciju i opustanje",
+                    link: "hatha.html"
+                },
+                {
+                    trening: "Core - Hard",
+                    ocena: ocena_core_hard,
+                    opis: "Trening samo za pobednike!",
+                    link: "coreHard.html"
+                },
+                {
+                    trening: "Core - Easy",
+                    ocena: ocena_core_easy,
+                    opis: "Trening pogodan za sve uzraste!",
+                    link: "coreEasy.html"
+                },
+                {
+                    trening: "Core - Medium",
+                    ocena: ocena_core_medium,
+                    opis: "Nas najtrazeniji program",
+                    link: "coreIntermediate.html"
+                }
+
+            ]
+
+            //   alert(ocene[0].trening+" "+ocene[0].ocena);
+
+
+            // var niz=sortiraj(ocene);
+            ocene.sort(function (a, b) {
+                return b.ocena - a.ocena;
+            });
+
+            //   alert(ocene[0].trening);
+
+            document.getElementById("prvi_najbolji").innerHTML = "<div class='card kartica'> <br><h3 class='trening_naslov'>" + ocene[0].trening + "</h3> <p class='ocena'> Ocena: " + ocene[0].ocena + "/10" + "</p> <p class='opis'>" + ocene[0].opis + "</p> <p><a class='link_trening' href=" + ocene[0].link + ">Saznaj vise</a>"
+            document.getElementById("drugi_najbolji").innerHTML = "<div class='card kartica'> <br><h3 class='trening_naslov'>" + ocene[1].trening + "</h3> <p class='ocena'> Ocena: " + ocene[1].ocena + "/10" + "</p> <p class='opis'>" + ocene[1].opis + "</p> <p><a class='link_trening' href=" + ocene[1].link + ">Saznaj vise</a>"
+            document.getElementById("treci_najbolji").innerHTML = "<div class='card kartica'> <br><h3 class='trening_naslov'>" + ocene[2].trening + "</h3> <p class='ocena'> Ocena: " + ocene[2].ocena + "/10" + "</p> <p class='opis'>" + ocene[2].opis + "</p> <p><a class='link_trening' href=" + ocene[2].link + ">Saznaj vise</a>"
+
+        }
+        /*     function sortiraj(ocene){
+                 ocene.sort(function(a,b){
+                 return a.ocena-b.ocena;
+             });}*/
+
+    </script>
+</head>
+<body onload='ucitaj()'>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-2 text-left header'>
+                <img src='pob.jpg' height='90px' width='70%'>
+            </div>
+            <div class='col-sm-2 text-left header'>
+                <p class='logo'>Teretana Pobednik</p>
+            </div>
+            <div class='col-sm-8 header lista'>
+                <nav>
+                    <ul>
+                        <li><a href='index.html' style="color: yellow;">Početna</a></li>
+                        <li><a href='usluge.html'>Usluge</a></li>
+                        <li><a href='Zakazivanje.html'>Zakazivanje treninga</a></li>
+                        <li><a href='mojNalog.html'>Moj nalog</a></li>
+                        <li><a href="O nama.html"> O nama</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12 slika'>
+
+                <div class='row'>
+                    <div class='col-sm-12 text-right ljub'>
+                        <br>
+                        <p class='tekst'>Pridružite nam se još danas! Postanite član naše<br> teretane i
+                            uživajte u zdravom i lepom izgledu!</p>
+                        <input class='btn btn-success' value='Pogledaj ponudu' onclick='saznaj()'>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12 slikaispod'>
+                Trenirajte u samom srcu Beograda! <br>
+                Adresa: Strahinjića Bana 70<br>
+                Kontakt telefon: 011/123-4567
+            </div>
+        </div>
+        <a name='usluge'></a>
+        <div class='row drugi'>
+            <div class='col-sm-4 text-center dr'>
+                <div class="card" style="width: 100%;">
+                    <div class="inner">
+                        <img src="prva.jpg" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Trening programi</h5>
+                        <p class="card-text">
+                            Fitnes centar Pobednik nudi raznovrsne programe treninga za
+                            sve uzraste. Pored dobro poznatih programa koji se realizuju
+                            u skladu s rasporedom centra, klijentima
+                            je na raspolaganju i teretana sa najsavremenijom opremom u svetu fitnesa.</p>
+                        <a href="#" class="btn btn-success" onclick='trening()'>Saznaj vise</a>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-4 text-center'>
+                <div class="card " style="width: 100%;">
+                    <div class="inner"> <img src="druga.jpg" class="card-img-top" alt="..."></div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Nutricionista</h5>
+                        <p class="card-text">
+                            Fitnes centar Pobednik nudi klijentima strucnu pomoc
+                            u oblasti ishrane. Ukoliko Vam je neophodna dijeta, ili jednostavno
+                            zelite da se hranite zdravo, nas profesionalni nutricionista je uvek
+                            tu za Vas. Nutricionista ce Vam prepisati adekvatnu ishranu.</p>
+                        <a href="#" class="btn btn-success" onclick='nutricionista()'>Saznaj vise</a>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-4 text-center'>
+                <div class="card " style="width: 100%;">
+                    <div class="inner">
+                        <img src="treca.jpg" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Masaza</h5>
+                        <p class="card-text">
+                            Fitnes centar Pobednik nudi klijentima razne vrste masaza poput relax masaza,
+                            ali i masaza terapeutskog tipa.
+                            Bilo da zelite da se opustite, ili vam je masaza neophodna
+                            radi zdravlja, nasi strucnjaci ce uvek pronaci najbolju
+                            terapiju za Vas.<br><br></p>
+                        <a href="#" class="btn btn-success" onclick='masaza()'>Saznaj vise</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class='row'>
+            <div class='col-sm-12 text-center'>
+                <h2 class='najbolje_naslov'>Najbolje ocenjeni treninzi</h2>
+            </div>
+        </div>
+        <br>
+        <div class='row'>
+            <!--       <div class='col-sm-12 zena'>
+                     <br> <br> <br> <br> <br> <br> <br> <br> <br>
+                         <div class='row '>
+                             <div class='col-sm-10 ljubicasto text-center'>
+                                 Raspored termina
+                             </div>
+                         </div>
+                     </div> -->
+            <div class='col-sm-4 text-center' id='prvi_najbolji'>
+
+            </div>
+            <div class='col-sm-4 text-center' id='drugi_najbolji'>
+
+            </div>
+            <div class='col-sm-4 text-center' id='treci_najbolji'>
+
+            </div>
+        </div>
+        <br>
+        <div class='row'>
+            <div class='col-sm-12 tim'>
+                <h1>Naš tim je uvek tu za Vas</h1>
+            </div>
+        </div>
+        <br>
+    </div>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='team-row'>
+                    <div class='profile-box'>
+                        <h4>Filip</h4>
+                        <small><b>Instruktor</b></small>
+                        <div>
+                            <img src='treneri/filip.jpg'>
+                        </div>
+                        <br> <br>
+                        <p>
+                            Filip je u nasoj teretani dugi niz godina.
+                            Veoma je posvecen svom poslu i omiljen je medju klijentima.
+                        </p>
+                    </div>
+                    <div class='profile-box'>
+                        <h4>Vanja</h4>
+                        <small><b>Instruktorka</b></small>
+                        <div>
+                            <img src='treneri/coka.jpg'>
+                        </div>
+                        <br> <br>
+                        <p>
+                            Vanja je nas najmladji trener.
+                            Vrlo je motivisana, a to prenosi i na svoje klijente koji za nju imaju samo reci hvale.
+                        </p>
+                    </div>
+                    <div class='profile-box'>
+                        <h4>Vukasin</h4>
+                        <small><b>Maser</b></small>
+                        <div>
+                            <img src='treneri/vukasin.jpg'>
+                        </div>
+                        <br> <br>
+                        <p>
+                            Vukasin je nas maser, a po potrebi i trener.
+                            Uvek je spreman da odgovori na sva pitanja i nedoumice.
+                        </p>
+                    </div>
+                    <div class='profile-box'>
+                        <h4>Zvezdana</h4>
+                        <small><b>Nutriconista</b></small>
+                        <div>
+                            <img src='treneri/zvezdana.jpg'>
+                        </div>
+                        <br> <br>
+                        <p>
+                            Zvezdana je nas nutricionista.
+                            Ima odlican odnos s klijentima i uvek
+                            je tu da ih usmeri ka zdravoj ishrani i navikama.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='row strucnjaci'>
+            <div class='col-sm-7 pitanja text-left'>
+                <h1>Pišite nam:</h1>
+                <table class="text-left table">
+                    <tr>
+                        <td>Ime i prezime:</td>
+                        <td><input type='text'></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type='text'></td>
+                    </tr>
+                    <tr>
+                        <td>Poruka:</td>
+                        <td><textarea cols='35' rows='4'></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align='left'>
+                            <input class='btn btn-success' value='Pošalji'>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class='col-sm-5'>
+                <img src='mapa/mapa.PNG' width='100%' height='300px'>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-sm-12 meni'>
+                <h3 class='menuheader'>
+                    Procitajte jos
+                </h3>
+            </div>
+        </div>
+
+
+
+        <div class='row meni'>
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Usluge
+                </h4>
+                <p>
+                    <a href="trening.html" class='menielem'>Treninzi </a>&nbsp;&nbsp;
+                    <i class="em em-muscle" aria-role="presentation" aria-label="FLEXED BICEPS"></i>
+                    <br />
+                    <a href="nutricionista.html" class='menielem'>Nutricionista</a>
+                    &nbsp;&nbsp;
+                    <i class="em em-banana" aria-role="presentation" aria-label="BANANA"></i>
+                    <br />
+                    <a href="masaza.html" class='menielem'>Masaze</a>&nbsp;&nbsp;
+                    <i class="em em-massage" aria-role="presentation" aria-label="FACE MASSAGE"></i>
+                </p>
+                <br />
+            </div>
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Zaposleni
+                </h4>
+                <p>
+                    <a href="Filip.html" class='menielem'>Filip </a>
+                    <i class="em em-man-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="Vanja.html" class='menielem'>Vanja</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="Vukasin.html" class='menielem'>Vukasin</a>
+                    <i class="em em-weight_lifter" aria-role="presentation" aria-label=""></i>
+                    <br />
+                    <a href="Zvezdana.html" class='menielem'>Zvezdana</a>
+                    <i class="em em-woman-lifting-weights" aria-role="presentation" aria-label=""></i>
+                </p>
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Raspored
+                </h4>
+                <p>
+                    <a href="Zakazivanje.html" class='menielem'>Kompletan raspored</a>
+                    <i class="em em-calendar" aria-role="presentation" aria-label="TEAR-OFF CALENDAR"></i>
+                </p>
+            </div>
+
+            <div class='col-sm-3 meni'>
+                <h4 class='menuheader'>
+                    Moj Nalog
+                </h4>
+                <p>
+                    <a href="mojNalog.html" class='menielem'>Nalog</a>
+                    <i class="em em-male-technologist" aria-role="presentation" aria-label=""></i>
+                    <br />
+                <h4 class='menuheader'>
+                    Jezici/Languages
+                </h4>
+                <div style="font-size: 10px;">
+                    <p>
+                        <a href="indexENG.html"> <img src="jack.png" alt="" height="15" width="30"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="index.html"><img src="srbija.png" alt="" height="15" width="30"></a>
+                        <br />
+                        <a style="text-decoration: none; color: white;" href="indexENG.html">engleski</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a style="text-decoration: none; color: white;" href="index.html">srpski</a>
+                    </p>
+                </div>
+                </p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-sm-12 footer'>
+                „Copyright 2020, Јована Јанковић, Филип Лучић, Одсек за софтверско инжењерство Електротехничког
+                факултета
+                Универзитета у Београду"
+            </div>
+        </div>
+    </div>
+</body>
+</html>

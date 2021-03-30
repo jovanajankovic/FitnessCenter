@@ -1,0 +1,176 @@
+.header{
+    background-color: #722F83;
+    color:white;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 18px;
+    font-style: normal;
+    font-variant: normal; 
+    font-weight: 100;
+    line-height: 26.4px;
+    margin-bottom: 3px;
+}
+
+.logo{
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif"; 
+    font-size: 30px;
+     font-style: normal; 
+    font-variant: normal; 
+     line-height: 26.4px;
+     padding-top: 15px;
+}
+
+/*ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+li{
+    display:inline;
+    float:right;
+}
+
+li a{
+    display:block;
+    color:white;
+    text-align: center;
+    padding: 30px 25px;
+    text-decoration: none;
+}
+
+li a:hover{
+    background-color: #F9C638;
+    text-decoration: none;
+    color:white;
+}
+*/
+
+.lista ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+.lista li{
+    display:inline;
+    float:right;
+
+}
+
+.lista li a{
+    display:block;
+    color:white;
+    text-align: center;
+    padding: 32px 25px;
+    text-decoration: none;
+}
+
+.lista li a:hover{
+    background-color: #F9C638;
+    text-decoration: none;
+    color:white;
+}
+
+.footer{
+    background-color: #681C8B;
+    color:white;
+    font-style: italic;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.masaza{
+    background-image: url(masaza/mas.png);
+    background-size:cover;
+    height:1000px;
+}
+
+.naslov{
+    font-family: "Yeseva One"; 
+    padding-top:5px;
+     font-style: normal;
+    font-variant: normal; 
+    font-weight: 700;
+     line-height: 26.4px;
+     color:white;
+     text-align: center;
+}
+
+.par{
+    font-family: "Linden Hill";
+     font-size: 18px; 
+     font-style: normal;
+      font-variant: normal; 
+      font-weight: 400;
+       line-height: 30px;
+       color:white;
+       padding-left: 20px;
+}
+
+.dugmici{
+    background-color: #E8A06D;
+    border-color: white;
+    border-width: 2px;
+    margin-top: 10px;
+    width:60%;
+    font-size:15px;
+    transition:0.5s;
+}
+
+.dugmici:hover{
+   height: 60px;
+   background-color: chocolate;
+   color:white;
+}
+
+.footer{
+    background-color: #681C8B;
+    color:white;
+    font-style: italic;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.navigacija{
+    margin-top: 5px;
+}
+
+
+
+
+
+.menuheader {
+
+    font-family: Forte;
+
+}
+
+
+
+.meni {
+    background-color: #1a3365;
+    color:whitesmoke;
+    
+  
+}
+
+.menielem {
+    color:whitesmoke;
+
+}
+
+.flag {
+    float: right;
+}
+
+p a:hover {
+   
+    background-color: #F9c638;
+    text-decoration: none;
+}
+
+
+
+

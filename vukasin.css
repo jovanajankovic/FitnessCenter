@@ -1,0 +1,176 @@
+/*ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+li{
+    display:inline;
+    float:right;
+
+}
+
+li a{
+    display:block;
+    color:white;
+    text-align: center;
+    padding: 30px 25px;
+    text-decoration: none;
+}
+
+li a:hover{
+    background-color: #F9c638;
+}*/
+
+
+.lista ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+.lista li{
+    display:inline;
+    float:right;
+
+}
+
+.lista li a{
+    display:block;
+    color:white;
+    text-align: center;
+    padding: 32px 25px;
+    text-decoration: none;
+}
+
+.lista li a:hover{
+    background-color: #F9C638;
+    text-decoration: none;
+    color:white;
+}
+
+
+.logo{
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif"; 
+    font-size: 30px;
+     font-style: normal; 
+    font-variant: normal; 
+     line-height: 26.4px;
+     padding-top: 15px;
+     padding-bottom: 9px;
+}
+
+
+
+.header{
+    background-color: #722F83;
+    color:white;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; 
+    font-size: 18px;
+    font-style: normal;
+    font-variant: normal; 
+    font-weight: 100;
+    line-height: 26.4px;
+}
+
+
+.trenutna{
+    color: #f9ff33;
+    }
+
+
+.cigle {
+
+/*background-image: url(cigle2.jpg);
+*/
+font-family: Bentham;
+font-weight: 700;
+line-height: 26.4px; 
+color:rgb(111, 55, 139);
+}
+
+
+
+
+.flag { 
+    float: right;
+
+}
+
+
+.portret {
+
+width: 90%;
+height:300px;
+float:center;
+margin-left: 10px;
+
+
+
+}
+
+
+.naslov {
+    color: #722F83;
+    
+    }
+.opis {
+    font-size: 17px;
+    color:#9A0A5E;
+
+
+
+}
+
+
+.link_boja{
+    color: #722F83;
+    font-weight: bold;
+    font-size: 18px;
+
+}
+
+p a:hover {
+   
+    background-color: #F9c638;
+}
+
+
+.footer{
+    background-color: #681C8B;
+    color:white;
+    font-style: italic;
+    text-align: center;
+    margin-top: 0px;
+}
+
+
+.menuheader {
+
+    font-family: Forte;
+
+}
+
+
+
+.meni {
+    background-color: #1a3365;
+    color:whitesmoke;
+    
+  
+}
+
+.menielem {
+    color:whitesmoke;
+
+}
+
+.navigacija{
+    margin-top:10px;
+    
+
+}
+
+
